@@ -1,0 +1,74 @@
+{
+    "name": "PlayerInputController",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "5da03799-0aed-4b36-8901-d751bc23d743",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "7ad6ee4a-18bb-41f2-95d1-cbd6d621231e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LookMouse",
+                    "type": "Button",
+                    "id": "43007122-bcb7-482e-a486-4342afa581cb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LookPad",
+                    "type": "Button",
+                    "id": "cae6745a-418f-4358-89e9-f0c7e4ece2a4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c1615a0c-3169-4129-a2b0-2392778d1f75",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7e3e5db-416d-49fc-bffe-d1a3183bd8b0",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "810af273-bc81-470f-b344-70fcd2eaa44c",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookPad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
