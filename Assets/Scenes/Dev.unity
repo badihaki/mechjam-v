@@ -319,6 +319,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1786989650}
   - component: {fileID: 1786989649}
+  - component: {fileID: 1786989652}
+  - component: {fileID: 1786989651}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -338,6 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210fe0e99fa425943b074445841ba08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <controls>k__BackingField: {fileID: 0}
+  <locomotionController>k__BackingField: {fileID: 0}
 --- !u!4 &1786989650
 Transform:
   m_ObjectHideFlags: 0
@@ -353,6 +357,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1786989651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786989648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: de990754fa538904d90534d64b0f47b2, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7ad6ee4a-18bb-41f2-95d1-cbd6d621231e
+    m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 43007122-bcb7-482e-a486-4342afa581cb
+    m_ActionName: Gameplay/LookMouse[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cae6745a-418f-4358-89e9-f0c7e4ece2a4
+    m_ActionName: Gameplay/LookPad
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cb0ae723-5c16-488b-a71f-3cc891e1943f
+    m_ActionName: Gameplay/Shoot[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7daf7288-5933-47c9-9c8f-418f0d4e3137
+    m_ActionName: Gameplay/Melee[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e077dffd-3a0d-4553-85da-64e966e89c10
+    m_ActionName: Gameplay/Dash[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2afb4084-86a2-4241-ad2e-ecf2ed259fef
+    m_ActionName: Gameplay/Reload[/Keyboard/r]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1786989652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786989648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a39f2f14e3bc02488eb8899e62c6f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <moveInput>k__BackingField: {x: 0, y: 0}
+  <lookInputKbm>k__BackingField: {x: 0, y: 0}
+  <lookInputGamepad>k__BackingField: {x: 0, y: 0}
+  <shootInput>k__BackingField: 0
+  <meleeInput>k__BackingField: 0
+  <dashInput>k__BackingField: 0
+  <reloadInput>k__BackingField: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
