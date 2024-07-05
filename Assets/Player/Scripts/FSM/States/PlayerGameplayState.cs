@@ -15,5 +15,6 @@ public class PlayerGameplayState : PlayerState
         player.locomotionController.ControlMovement();
         player.attackController.CanShoot();
         player.attackController.CanMelee();
+        player.attackController.CanReload();
 	}
 }

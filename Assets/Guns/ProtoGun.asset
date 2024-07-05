@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113ed60a5bc39ac4ea8cebdf89d9573e, type: 3}
   m_Name: ProtoGun
   m_EditorClassIdentifier: 
-  gunName: 
-  damage: 0
-  fireRate: 0
-  maxAmmo: 0
-  reloadTime: 0
+  gunName: Proto
+  damage: 1
+  fireRate: 1.2
+  maxAmmo: 5
+  reloadTime: 0.85

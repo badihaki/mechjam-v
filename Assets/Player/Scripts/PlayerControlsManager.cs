@@ -43,5 +43,12 @@ public class PlayerControlsManager : MonoBehaviour
         if (context.performed) meleeInput = true;
         else if (context.canceled) meleeInput = false;
     }
+    public void UseMelee() => meleeInput = false;
+    public void OnReload(InputAction.CallbackContext context)
+    {
+		if (context.performed) reloadInput = true;
+		else if (context.canceled) reloadInput = false;
+	}
+    public void UseReload() => reloadInput = false;
 	#endregion
 }

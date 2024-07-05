@@ -799,11 +799,35 @@ MonoBehaviour:
     m_ActionId: cae6745a-418f-4358-89e9-f0c7e4ece2a4
     m_ActionName: Gameplay/LookPad
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1786989652}
+        m_TargetAssemblyTypeName: PlayerControlsManager, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: cb0ae723-5c16-488b-a71f-3cc891e1943f
     m_ActionName: Gameplay/Shoot[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1786989652}
+        m_TargetAssemblyTypeName: PlayerControlsManager, Assembly-CSharp
+        m_MethodName: OnMelee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7daf7288-5933-47c9-9c8f-418f0d4e3137
     m_ActionName: Gameplay/Melee[/Mouse/rightButton]
   - m_PersistentCalls:
@@ -811,7 +835,19 @@ MonoBehaviour:
     m_ActionId: e077dffd-3a0d-4553-85da-64e966e89c10
     m_ActionName: Gameplay/Dash[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1786989652}
+        m_TargetAssemblyTypeName: PlayerControlsManager, Assembly-CSharp
+        m_MethodName: OnReload
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2afb4084-86a2-4241-ad2e-ecf2ed259fef
     m_ActionName: Gameplay/Reload[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 1
@@ -904,6 +940,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44a85a0fde9d93469630f8d2fd70fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <gun>k__BackingField: {fileID: 11400000, guid: 6bb7d65458dd5b7428a6dfb15a9d6e8c, type: 2}
+  currentAmmo: 0
+  ammoStock: 0
+  fireRateTimer: 0
+  canMeelee: 1
+  meleeRechargeTime: 1.2
 --- !u!1 &1849922226
 GameObject:
   m_ObjectHideFlags: 0

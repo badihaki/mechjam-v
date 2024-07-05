@@ -8,14 +8,17 @@ public class PlayerAttackController : MonoBehaviour
 	private Player player;
 	[field: SerializeField] public GunTemplate gun { get; private set; }
 	[SerializeField] private int currentAmmo;
+	[SerializeField] private int ammoStock;
 	[SerializeField] private float fireRateTimer = 0;
 	[SerializeField] private bool canMeelee = true;
 	[SerializeField] private float meleeRechargeTime = 1.2f;
+	[SerializeField] private bool isReloading = false;
 
 	public void InitializeController(Player _player)
 	{
 		player = _player;
 		currentAmmo = gun.maxAmmo;
+		ammoStock = 3;
 	}
 
 	private void Update()
@@ -31,7 +34,7 @@ public class PlayerAttackController : MonoBehaviour
 
 	public void CanShoot()
 	{
-		if (gun)
+		if (gun && player.controls.shootInput)
 		{
 			if (currentAmmo > 0 && fireRateTimer <= 0) Shoot();
 		}
@@ -39,12 +42,9 @@ public class PlayerAttackController : MonoBehaviour
 
 	private void Shoot()
 	{
-		if (player.controls.shootInput)
-		{
-			print("shooting");
-			currentAmmo--;
-			fireRateTimer += gun.fireRate;
-		}
+		print("shooting");
+		currentAmmo--;
+		fireRateTimer += gun.fireRate;
 	}
 
 	public void CanMelee()
@@ -55,9 +55,30 @@ public class PlayerAttackController : MonoBehaviour
 			{
 				print("melee-ing");
 				canMeelee = false;
+				player.controls.UseMelee();
 				StartCoroutine(MeleeRecharge());
 			}
 		}
+	}
+
+	public void CanReload()
+	{
+		if (player.controls.reloadInput && !isReloading)
+		{
+			if (currentAmmo < gun.maxAmmo && ammoStock > 0) StartCoroutine(ReloadGun());
+			player.controls.UseReload();
+		}
+	}
+
+	private IEnumerator ReloadGun()
+	{
+		print("reloading");
+		isReloading = true;
+		currentAmmo = 0;
+		ammoStock--;
+		yield return new WaitForSeconds(gun.reloadTime);
+		currentAmmo = gun.maxAmmo;
+		isReloading = false;
 	}
 
 	private IEnumerator MeleeRecharge()
