@@ -72,7 +72,7 @@ public class PlayerLocomotionController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), rotationSpeed);
         }
 
-        physicsController.velocity = -movement * speed;
+        physicsController.velocity = movement * speed;
     }
 
     private void MovePlayerWithAim()
@@ -101,6 +101,6 @@ public class PlayerLocomotionController : MonoBehaviour
         }
 
         Vector3 movement = new Vector3(player.controls.moveInput.x, 0.0f, player.controls.moveInput.y);
-        physicsController.velocity = -movement * speed;
+        physicsController.velocity = movement * speed;
     }
 }
