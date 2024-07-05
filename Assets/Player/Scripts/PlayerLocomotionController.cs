@@ -13,15 +13,11 @@ public class PlayerLocomotionController : MonoBehaviour
 
     private Camera cam;
 
-    private bool ready = false;
-    
     public void InitializeController(Player _player)
     {
         player = _player;
         physicsController = GetComponent<Rigidbody>();
         cam = Camera.main;
-
-        ready = true;
     }
 
     // Update is called once per frame
@@ -63,8 +59,6 @@ public class PlayerLocomotionController : MonoBehaviour
 
     private void MovePlayer()
     {
-        print("reggie move");
-
         Vector3 movement = new Vector3(player.controls.moveInput.x, 0.0f, player.controls.moveInput.y);
 
         if(movement != Vector3.zero )
@@ -77,8 +71,6 @@ public class PlayerLocomotionController : MonoBehaviour
 
     private void MovePlayerWithAim()
     {
-        print("moving with aim");
-
         if (player.isUsingKBMP)
         {
             Vector3 lookPosition = rotationTarget - transform.position;
