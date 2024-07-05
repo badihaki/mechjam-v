@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class PlayerState
 {
     protected Player player;
@@ -20,33 +21,34 @@ public class PlayerState
     protected bool isExitingState;
 
     #region enter/exit
-    public void Enter()
+    public virtual void Enter()
     {
         stateStartTime = Time.time;
         isExitingState = false;
     }
-    public void Exit()
+    public virtual void Exit()
     {
         isExitingState = true;
     }
     #endregion
 
     #region logic updates
-    public void LogicUpdate()
+    public virtual void LogicUpdate()
     {
         CheckStateTransitions();
     }
 
+    public virtual void PhysicsUpdate() { }
     #endregion
 
     #region checks and triggers
-    protected void CheckStateTransitions()
+    protected virtual void CheckStateTransitions()
     {
-        throw new NotImplementedException();
+        //
     }
 
-    public void AnimationTrigger() { }
-    public void AnimationVfxTrigger() { }
-    public void AnimationSfxTrigger() { }
+    public virtual void AnimationTrigger() { }
+    public virtual void AnimationVfxTrigger() { }
+    public virtual void AnimationSfxTrigger() { }
     #endregion
 }

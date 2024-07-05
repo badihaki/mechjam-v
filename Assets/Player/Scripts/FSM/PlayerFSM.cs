@@ -6,11 +6,18 @@ using UnityEngine;
 public class PlayerFSM : MonoBehaviour
 {
     [field: SerializeField] public PlayerState currentState { get; private set; }
+    private bool ready = false;
 
-    public void InitializeStateMachine(PlayerState state)
+    // state list
+    public PlayerGameplayState gameplayState { get; private set; }
+
+    public void InitializeStateMachine(Player player)
     {
-        currentState = state;
+        gameplayState = new PlayerGameplayState(player, this, "gameplay");
+
+        currentState = gameplayState;
         currentState.Enter();
+        ready = true;
     }
 
     public void ChangeState(PlayerState state)
@@ -18,5 +25,14 @@ public class PlayerFSM : MonoBehaviour
         currentState.Exit();
         currentState = state;
         currentState.Enter();
+    }
+
+    private void Update()
+    {
+        if (ready) currentState.LogicUpdate();
+    }
+    private void LateUpdate()
+    {
+        if (ready) currentState.PhysicsUpdate();
     }
 }

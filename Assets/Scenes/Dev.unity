@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -274,11 +275,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 40
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -302,13 +303,47 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.000000028441482, y: 0.75936466, z: -0.6506653, w: -0.000000033192883}
+  m_LocalPosition: {x: 0, y: 2.15, z: 0.7600002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1341013267
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,7 +456,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.8579926, y: 4.8579926, z: 4.8579926}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1893249212}
@@ -509,8 +544,9 @@ GameObject:
   - component: {fileID: 1786989650}
   - component: {fileID: 1786989649}
   - component: {fileID: 1786989652}
-  - component: {fileID: 1786989654}
   - component: {fileID: 1786989651}
+  - component: {fileID: 1786989655}
+  - component: {fileID: 1786989654}
   - component: {fileID: 1786989653}
   m_Layer: 0
   m_Name: Player
@@ -531,8 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210fe0e99fa425943b074445841ba08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <controls>k__BackingField: {fileID: 0}
-  <locomotionController>k__BackingField: {fileID: 0}
+  <playerID>k__BackingField: 0
+  <isUsingKBMP>k__BackingField: 0
 --- !u!4 &1786989650
 Transform:
   m_ObjectHideFlags: 0
@@ -591,11 +627,35 @@ MonoBehaviour:
     m_ActionId: 7ad6ee4a-18bb-41f2-95d1-cbd6d621231e
     m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1786989652}
+        m_TargetAssemblyTypeName: PlayerControlsManager, Assembly-CSharp
+        m_MethodName: OnMouseLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 43007122-bcb7-482e-a486-4342afa581cb
     m_ActionName: Gameplay/LookMouse[/Mouse/position]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1786989652}
+        m_TargetAssemblyTypeName: PlayerControlsManager, Assembly-CSharp
+        m_MethodName: OnGamepadLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: cae6745a-418f-4358-89e9-f0c7e4ece2a4
     m_ActionName: Gameplay/LookPad
   - m_PersistentCalls:
@@ -663,7 +723,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1786989654
 MonoBehaviour:
@@ -675,6 +735,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcd4fb331012dc54eb7f07014620e2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5.5
+  rotationTarget: {x: 0, y: 0, z: 0}
+  rotationSpeed: 0.25
+--- !u!114 &1786989655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786989648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0e67a6e6a90b94bbbe86f3fc91d6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1849922226

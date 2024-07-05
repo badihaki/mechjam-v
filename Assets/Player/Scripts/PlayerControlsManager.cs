@@ -20,4 +20,13 @@ public class PlayerControlsManager : MonoBehaviour
         float y = Mathf.Round(input.y);
         moveInput = new Vector2(x, y);
     }
+
+    public void OnMouseLook(InputAction.CallbackContext context)
+    {
+        lookInputKbm = context.ReadValue<Vector2>();
+    }
+    public void OnGamepadLook(InputAction.CallbackContext context)
+    {
+        lookInputGamepad = context.ReadValue<Vector2>();
+    }
 }
