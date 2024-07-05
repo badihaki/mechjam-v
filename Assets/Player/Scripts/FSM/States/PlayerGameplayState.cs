@@ -13,5 +13,7 @@ public class PlayerGameplayState : PlayerState
         base.PhysicsUpdate();
 
         player.locomotionController.ControlMovement();
-    }
+        player.attackController.CanShoot();
+        player.attackController.CanMelee();
+	}
 }

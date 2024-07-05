@@ -13,7 +13,8 @@ public class PlayerControlsManager : MonoBehaviour
     [field: SerializeField] public bool dashInput { get; private set; }
     [field: SerializeField] public bool reloadInput { get; private set; }
 
-    public void OnMove(InputAction.CallbackContext context)
+	#region move/look
+	public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>().normalized;
         float x = Mathf.Round(input.x);
@@ -29,4 +30,18 @@ public class PlayerControlsManager : MonoBehaviour
     {
         lookInputGamepad = context.ReadValue<Vector2>();
     }
+    #endregion
+
+    #region combat
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.performed) shootInput = true;
+        else if (context.canceled) shootInput = false;
+    }
+    public void OnMelee(InputAction.CallbackContext context)
+    {
+        if (context.performed) meleeInput = true;
+        else if (context.canceled) meleeInput = false;
+    }
+	#endregion
 }
