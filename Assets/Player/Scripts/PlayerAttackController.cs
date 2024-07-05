@@ -13,12 +13,14 @@ public class PlayerAttackController : MonoBehaviour
 	[SerializeField] private bool canMeelee = true;
 	[SerializeField] private float meleeRechargeTime = 1.2f;
 	[SerializeField] private bool isReloading = false;
+	[SerializeField] private Transform shootPoint;
 
 	public void InitializeController(Player _player)
 	{
 		player = _player;
 		currentAmmo = gun.maxAmmo;
 		ammoStock = 3;
+		shootPoint = transform.Find("ShootPoint");
 	}
 
 	private void Update()
@@ -45,6 +47,8 @@ public class PlayerAttackController : MonoBehaviour
 		print("shooting");
 		currentAmmo--;
 		fireRateTimer += gun.fireRate;
+		Projectile projectile = Instantiate(gun.projectile, shootPoint.position, transform.rotation).GetComponent<Projectile>();
+		projectile.InitializeProjectile();
 	}
 
 	public void CanMelee()

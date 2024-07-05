@@ -10,4 +10,5 @@ public class GunTemplate : ScriptableObject
 	public float fireRate;
 	public int maxAmmo;
 	public float reloadTime;
+	public GameObject projectile;
 }

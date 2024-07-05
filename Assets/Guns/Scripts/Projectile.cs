@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody physicsController;
+    [SerializeField] private float speed = 8.0f;
+
+    public void InitializeProjectile()
     {
-        
+        physicsController = transform.AddComponent<Rigidbody>();
+        physicsController.useGravity = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void FixedUpdate()
+	{
+        if (physicsController != null)
+        {
+            physicsController.velocity = transform.forward * speed;
+        }
+	}
 }
