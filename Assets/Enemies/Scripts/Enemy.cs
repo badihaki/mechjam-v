@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
     [field: SerializeField] public Health health { get; private set; }
+    [field: SerializeField] public Transform target { get; private set; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +23,15 @@ public class Enemy : MonoBehaviour, IDamageable
         int healthValue = (int)Mathf.Round(UnityEngine.Random.Range(healthRange.x, healthRange.y));
         health.InitializeHealth(healthValue);
         health.onHealthChange += DidEntityDie;
+
+        FindNewPlayerTarget();
+    }
+
+    public void FindNewPlayerTarget()
+    {
+        int playerIndex = (int)Mathf.Round(UnityEngine.Random.Range(0, GameMaster.Entity.playerList.Count - 1));
+        print(playerIndex);
+        target = GameMaster.Entity.playerList[playerIndex].transform;
     }
 
     private void OnEnable()
