@@ -57,7 +57,7 @@ public class PlayerAttackController : MonoBehaviour
         onAmmoChanged(currentAmmo);
         fireRateTimer += gun.fireRate;
 		Projectile projectile = Instantiate(gun.projectile, shootPoint.position, transform.rotation).GetComponent<Projectile>();
-		projectile.InitializeProjectile();
+		projectile.InitializeProjectile(player.transform, gun.damage);
 	}
 
 	public void CanMelee()

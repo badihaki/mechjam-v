@@ -19,6 +19,25 @@ public class Enemy : MonoBehaviour, IDamageable
         health = transform.AddComponent<Health>();
         int healthValue = (int)Mathf.Round(UnityEngine.Random.Range(healthRange.x, healthRange.y));
         health.InitializeHealth(healthValue);
+        health.onHealthChange += DidEntityDie;
+    }
+
+    private void OnEnable()
+    {
+        if (health) health.onHealthChange += DidEntityDie;
+    }
+    private void OnDisable()
+    {
+        health.onHealthChange -= DidEntityDie;
+    }
+
+    private void DidEntityDie(int health)
+    {
+        if(health <= 0)
+        {
+            print("entity died");
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -29,6 +48,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Damage(Transform entity, int damage, Vector2 force)
     {
-        // change health
+        health.ChangeHealth(health.currentHealth - damage);
     }
 }

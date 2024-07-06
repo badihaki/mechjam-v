@@ -1108,38 +1108,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035591078}
   m_CullTransparentMesh: 1
---- !u!1 &1040115524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4771751864557174826, guid: 8c1455b643fe0f845990fc5159574e19, type: 3}
-  m_PrefabInstance: {fileID: 648491232267407605}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1040115527
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040115524}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1093026645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427c2f17cca9d494d91dc8886c3cf3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <gravity>k__BackingField: {x: 0, y: -9.81, z: 0}
   playerList: []
 --- !u!4 &1738141318
 Transform:
@@ -2004,17 +1973,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4771751864557174826, guid: 8c1455b643fe0f845990fc5159574e19, type: 3}
-      propertyPath: m_TagString
-      value: UnityEngine.Random.Range(healthRange.x, healthRange.y)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4771751864557174826, guid: 8c1455b643fe0f845990fc5159574e19, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1040115527}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c1455b643fe0f845990fc5159574e19, type: 3}
 --- !u!1001 &1331107567627977106
 PrefabInstance:

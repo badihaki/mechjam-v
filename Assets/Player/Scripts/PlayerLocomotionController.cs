@@ -100,7 +100,9 @@ public class PlayerLocomotionController : MonoBehaviour
             }
         }
 
-        Vector3 movement = new Vector3(player.controls.moveInput.x, physicsController.velocity.y, player.controls.moveInput.y);
+        Vector3 movement = new Vector3(player.controls.moveInput.x, 0.0f, player.controls.moveInput.y);
+        // Vector3 movement = new Vector3(player.controls.moveInput.x, GameMaster.Entity.gravity.y, player.controls.moveInput.y);
+
         physicsController.velocity = movement * speed;
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster Entity { get; private set; }
+    [field: SerializeField] public Vector3 gravity { get; private set; } = Physics.gravity;
     [field: SerializeField] public List<Player> playerList = new List<Player>();
 
     private void OnEnable()
