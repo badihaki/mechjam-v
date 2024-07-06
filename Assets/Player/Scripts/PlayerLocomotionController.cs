@@ -67,7 +67,7 @@ public class PlayerLocomotionController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 movement = new Vector3(player.controls.moveInput.x, 0.0f, player.controls.moveInput.y);
+        Vector3 movement = new Vector3(player.controls.moveInput.x, physicsController.velocity.y, player.controls.moveInput.y);
 
         if (movement != Vector3.zero)
         {
@@ -100,7 +100,7 @@ public class PlayerLocomotionController : MonoBehaviour
             }
         }
 
-        Vector3 movement = new Vector3(player.controls.moveInput.x, 0.0f, player.controls.moveInput.y);
+        Vector3 movement = new Vector3(player.controls.moveInput.x, physicsController.velocity.y, player.controls.moveInput.y);
         physicsController.velocity = movement * speed;
     }
 
@@ -141,7 +141,6 @@ public class PlayerLocomotionController : MonoBehaviour
         // apply direction and dashForce to physicsController's velocity
         while (dashTimer > 0.0f)
         {
-            print($"boost dashing at direction {movement}");
             dashTimer -= Time.deltaTime;
             physicsController.velocity = movement * dashForce;
             yield return null;
