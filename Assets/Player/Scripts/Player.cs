@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     [field: SerializeField] public int playerID { get; private set; }
     [field: SerializeField] public bool isUsingKBMP { get; private set; } = false;
     public PlayerControlsManager controls { get; private set; }
+    [field: SerializeField] public Health health { get; private set; }
     public PlayerLocomotionController locomotionController { get; private set; }
     public PlayerAttackController attackController { get; private set; }
     public PlayerUIController uIController { get; private set; }
@@ -24,6 +26,10 @@ public class Player : MonoBehaviour
         
         // controls
         controls = GetComponent<PlayerControlsManager>();
+
+        // health
+        health = transform.AddComponent<Health>();
+        health.InitializeHealth(20);
         
         // locomotion
         locomotionController = GetComponent<PlayerLocomotionController>();

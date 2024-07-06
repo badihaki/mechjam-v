@@ -26,9 +26,14 @@ public class PlayerUIController : MonoBehaviour
     private void SetUpComponents()
     {
         healthBar = uiContainer.Find("Health").GetComponent<Slider>();
+        healthBar.maxValue = player.health.maxHealth;
+        healthBar.value = player.health.currentHealth;
+
         portrait = uiContainer.Find("Portrait").GetComponent<Image>();
+        
         ammoText = uiContainer.Find("Ammo").GetComponent<TextMeshProUGUI>();
         ammoText.text = player.attackController.currentAmmo.ToString();
+        
         stockText = uiContainer.Find("Stock").GetComponent<TextMeshProUGUI>();
         stockText.text = player.attackController.ammoStock.ToString();
     }
@@ -37,6 +42,7 @@ public class PlayerUIController : MonoBehaviour
     {
         player.attackController.onAmmoChanged += ChangeAmmo;
         player.attackController.onStockChanged += ChangeStock;
+        player.health.onHealthChange += ChangeHealth;
     }
 
     private void OnEnable()
@@ -47,6 +53,7 @@ public class PlayerUIController : MonoBehaviour
     {
         player.attackController.onAmmoChanged -= ChangeAmmo;
         player.attackController.onStockChanged -= ChangeStock;
+        player.health.onHealthChange -= ChangeHealth;
     }
 
     public void ChangeHealth(int health)

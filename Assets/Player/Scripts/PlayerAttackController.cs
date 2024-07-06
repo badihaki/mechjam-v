@@ -17,9 +17,9 @@ public class PlayerAttackController : MonoBehaviour
 
 	// events
 	public delegate void AmmoChanged(int ammo);
-	public AmmoChanged onAmmoChanged;
+	public event AmmoChanged onAmmoChanged;
 	public delegate void StockChanged(int ammo);
-	public StockChanged onStockChanged;
+	public event StockChanged onStockChanged;
 
     public void InitializeController(Player _player)
 	{
