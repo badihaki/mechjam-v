@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     {
         physicsController = transform.AddComponent<Rigidbody>();
         physicsController.useGravity = false;
+        Destroy(gameObject, 4.0f);
     }
 
 	private void FixedUpdate()

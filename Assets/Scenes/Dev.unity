@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -863,7 +863,19 @@ MonoBehaviour:
     m_ActionId: 7daf7288-5933-47c9-9c8f-418f0d4e3137
     m_ActionName: Gameplay/Melee[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1786989652}
+        m_TargetAssemblyTypeName: PlayerControlsManager, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e077dffd-3a0d-4553-85da-64e966e89c10
     m_ActionName: Gameplay/Dash[/Keyboard/space]
   - m_PersistentCalls:
@@ -948,6 +960,11 @@ MonoBehaviour:
   speed: 5.5
   rotationTarget: {x: 0, y: 0, z: 0}
   rotationSpeed: 0.25
+  timeToDash: 0.15
+  dashTimer: 0
+  dashAvailable: 1
+  dashForce: 35
+  <movementEnabled>k__BackingField: 0
 --- !u!114 &1786989655
 MonoBehaviour:
   m_ObjectHideFlags: 0

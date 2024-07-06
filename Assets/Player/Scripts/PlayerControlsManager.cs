@@ -30,6 +30,12 @@ public class PlayerControlsManager : MonoBehaviour
     {
         lookInputGamepad = context.ReadValue<Vector2>();
     }
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed) dashInput = true;
+        else if (context.canceled) dashInput = false;
+    }
+    public void UseDash() => dashInput = false;
     #endregion
 
     #region combat

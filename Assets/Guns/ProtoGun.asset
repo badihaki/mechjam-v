@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: Proto
   damage: 1
-  fireRate: 1.2
+  fireRate: 0.5
   maxAmmo: 5
-  reloadTime: 0.85
+  reloadTime: 1.2
   projectile: {fileID: 4263766586755111797, guid: 54b8c270e6b8cf74eb1a3f8d73c80971, type: 3}
