@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.EventSystems.EventTrigger;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     // these are public so other scripts have access, but value can only be modified here
     [field: SerializeField] public int playerID { get; private set; }
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
         // health
         health = transform.AddComponent<Health>();
         health.InitializeHealth(20);
+        health.onHealthChange += DidEntityDie;
         
         // locomotion
         locomotionController = GetComponent<PlayerLocomotionController>();
@@ -63,5 +65,23 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void DidEntityDie(int hp)
+    {
+        if (hp <= 0) Die();
+    }
+
+    private void Die()
+    {
+        print($"player({playerID}) was killed");
+        GameMaster.Entity.playerList.Remove(this);
+        Destroy(gameObject);
+    }
+
+    public void Damage(Transform entity, int damage, Vector2 force)
+    {
+        print($"player({playerID}) was damaged by {entity.name}");
+        health.ChangeHealth(damage);
     }
 }

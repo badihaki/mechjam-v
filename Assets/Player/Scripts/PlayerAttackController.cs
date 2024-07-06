@@ -52,7 +52,7 @@ public class PlayerAttackController : MonoBehaviour
 
 	private void Shoot()
 	{
-		print("shooting");
+		// print("shooting");
 		currentAmmo--;
         onAmmoChanged(currentAmmo);
         fireRateTimer += gun.fireRate;
@@ -85,7 +85,7 @@ public class PlayerAttackController : MonoBehaviour
 
 	private IEnumerator ReloadGun()
 	{
-		print("reloading");
+		// print("reloading");
 		isReloading = true;
 		currentAmmo = 0;
 		onAmmoChanged(currentAmmo);
