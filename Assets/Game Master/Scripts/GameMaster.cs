@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster Entity { get; private set; }
+    [field: SerializeField] public List<Player> playerList = new List<Player>();
+
     private void OnEnable()
     {
         if(Entity != this && Entity!=null)
