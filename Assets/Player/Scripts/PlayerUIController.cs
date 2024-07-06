@@ -20,6 +20,7 @@ public class PlayerUIController : MonoBehaviour
         uiContainer = GameObject.Find("PlayerCanvas").transform.Find($"P{player.playerID}Container");
 
         SetUpComponents();
+        SetUpEvents();
     }
 
     private void SetUpComponents()
@@ -27,7 +28,25 @@ public class PlayerUIController : MonoBehaviour
         healthBar = uiContainer.Find("Health").GetComponent<Slider>();
         portrait = uiContainer.Find("Portrait").GetComponent<Image>();
         ammoText = uiContainer.Find("Ammo").GetComponent<TextMeshProUGUI>();
+        ammoText.text = player.attackController.currentAmmo.ToString();
         stockText = uiContainer.Find("Stock").GetComponent<TextMeshProUGUI>();
+        stockText.text = player.attackController.ammoStock.ToString();
+    }
+
+    private void SetUpEvents()
+    {
+        player.attackController.onAmmoChanged += ChangeAmmo;
+        player.attackController.onStockChanged += ChangeStock;
+    }
+
+    private void OnEnable()
+    {
+        if (player) SetUpEvents();
+    }
+    private void OnDisable()
+    {
+        player.attackController.onAmmoChanged -= ChangeAmmo;
+        player.attackController.onStockChanged -= ChangeStock;
     }
 
     public void ChangeHealth(int health)

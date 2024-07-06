@@ -7,19 +7,27 @@ public class PlayerAttackController : MonoBehaviour
 {
 	private Player player;
 	[field: SerializeField] public GunTemplate gun { get; private set; }
-	[SerializeField] private int currentAmmo;
-	[SerializeField] private int ammoStock;
+	[field: SerializeField] public int currentAmmo { get; private set; }
+	[field: SerializeField] public int ammoStock { get; private set; }
 	[SerializeField] private float fireRateTimer = 0;
 	[SerializeField] private bool canMeelee = true;
 	[SerializeField] private float meleeRechargeTime = 1.2f;
 	[SerializeField] private bool isReloading = false;
 	[SerializeField] private Transform shootPoint;
 
-	public void InitializeController(Player _player)
+	// events
+	public delegate void AmmoChanged(int ammo);
+	public AmmoChanged onAmmoChanged;
+	public delegate void StockChanged(int ammo);
+	public StockChanged onStockChanged;
+
+    public void InitializeController(Player _player)
 	{
 		player = _player;
 		currentAmmo = gun.maxAmmo;
-		ammoStock = 3;
+		if (onAmmoChanged != null) onAmmoChanged(currentAmmo);
+        ammoStock = 3;
+		if (onStockChanged != null) onStockChanged(ammoStock);
 		shootPoint = transform.Find("ShootPoint");
 	}
 
@@ -46,7 +54,8 @@ public class PlayerAttackController : MonoBehaviour
 	{
 		print("shooting");
 		currentAmmo--;
-		fireRateTimer += gun.fireRate;
+        onAmmoChanged(currentAmmo);
+        fireRateTimer += gun.fireRate;
 		Projectile projectile = Instantiate(gun.projectile, shootPoint.position, transform.rotation).GetComponent<Projectile>();
 		projectile.InitializeProjectile();
 	}
@@ -79,9 +88,12 @@ public class PlayerAttackController : MonoBehaviour
 		print("reloading");
 		isReloading = true;
 		currentAmmo = 0;
+		onAmmoChanged(currentAmmo);
 		ammoStock--;
-		yield return new WaitForSeconds(gun.reloadTime);
-		currentAmmo = gun.maxAmmo;
+        onStockChanged(ammoStock);
+        yield return new WaitForSeconds(gun.reloadTime);
+        currentAmmo = gun.maxAmmo;
+        onAmmoChanged(currentAmmo);
 		isReloading = false;
 	}
 

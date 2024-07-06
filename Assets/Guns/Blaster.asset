@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 113ed60a5bc39ac4ea8cebdf89d9573e, type: 3}
-  m_Name: ProtoGun
+  m_Name: Blaster
   m_EditorClassIdentifier: 
-  gunName: Proto
+  gunName: Blaster
   damage: 1
   fireRate: 0.5
-  maxAmmo: 5
+  maxAmmo: 12
   reloadTime: 1.2
   projectile: {fileID: 4263766586755111797, guid: 54b8c270e6b8cf74eb1a3f8d73c80971, type: 3}

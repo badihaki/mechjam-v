@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2135,8 +2135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <gun>k__BackingField: {fileID: 11400000, guid: 6bb7d65458dd5b7428a6dfb15a9d6e8c, type: 2}
-  currentAmmo: 0
-  ammoStock: 0
+  <currentAmmo>k__BackingField: 0
+  <ammoStock>k__BackingField: 0
   fireRateTimer: 0
   canMeelee: 1
   meleeRechargeTime: 1.2
@@ -2155,6 +2155,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiContainer: {fileID: 0}
+  healthBar: {fileID: 0}
+  portrait: {fileID: 0}
+  ammoText: {fileID: 0}
+  stockText: {fileID: 0}
 --- !u!1 &1849922226
 GameObject:
   m_ObjectHideFlags: 0
