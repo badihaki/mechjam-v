@@ -44,7 +44,7 @@ public class PlayerAttackController : MonoBehaviour
 
 	public void CanShoot()
 	{
-		if (gun && player.controls.shootInput)
+		if (gun && player.Controls.shootInput)
 		{
 			if (currentAmmo > 0 && fireRateTimer <= 0) Shoot();
 		}
@@ -62,13 +62,13 @@ public class PlayerAttackController : MonoBehaviour
 
 	public void CanMelee()
 	{
-		if (player.controls.meleeInput)
+		if (player.Controls.meleeInput)
 		{
 			if (canMeelee)
 			{
 				print("melee-ing");
 				canMeelee = false;
-				player.controls.UseMelee();
+				player.Controls.UseMelee();
 				StartCoroutine(MeleeRecharge());
 			}
 		}
@@ -76,10 +76,10 @@ public class PlayerAttackController : MonoBehaviour
 
 	public void CanReload()
 	{
-		if (player.controls.reloadInput && !isReloading)
+		if (player.Controls.reloadInput && !isReloading)
 		{
 			if (currentAmmo < gun.maxAmmo && ammoStock > 0) StartCoroutine(ReloadGun());
-			player.controls.UseReload();
+			player.Controls.UseReload();
 		}
 	}
 

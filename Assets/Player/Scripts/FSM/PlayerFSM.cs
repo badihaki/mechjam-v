@@ -10,12 +10,14 @@ public class PlayerFSM : MonoBehaviour
 
     // state list
     public PlayerGameplayState gameplayState { get; private set; }
+    public PlayerMenuState menuState { get; private set; }
 
     public void InitializeStateMachine(Player player)
     {
         gameplayState = new PlayerGameplayState(player, this, "gameplay");
+        menuState = new PlayerMenuState(player, this, "menu");
 
-        currentState = gameplayState;
+        currentState = menuState;
         currentState.Enter();
         ready = true;
     }

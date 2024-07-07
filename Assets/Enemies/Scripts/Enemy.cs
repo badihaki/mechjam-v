@@ -35,9 +35,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void FindNewPlayerTarget()
     {
-        int playerIndex = (int)Mathf.Round(UnityEngine.Random.Range(0, GameMaster.Entity.gameplayPlayerList.Count - 1));
+        int playerIndex = (int)Mathf.Round(UnityEngine.Random.Range(0, GameMaster.Entity.playerList.Count - 1));
         print(playerIndex);
-        target = GameMaster.Entity.gameplayPlayerList[playerIndex].transform;
+        target = GameMaster.Entity.playerList[playerIndex].transform;
     }
 
     private void OnEnable()

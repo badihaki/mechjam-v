@@ -12,10 +12,10 @@ public class PlayerGameplayState : PlayerState
     {
         base.PhysicsUpdate();
 
-        if (player.locomotionController.movementEnabled) player.locomotionController.ControlMovement();
-        player.locomotionController.CanBoostDash();
-        player.attackController.CanShoot();
-        player.attackController.CanMelee();
-        player.attackController.CanReload();
+        if (player.LocomotionController.movementEnabled) player.LocomotionController.ControlMovement();
+        player.LocomotionController.CanBoostDash();
+        player.AttackController.CanShoot();
+        player.AttackController.CanMelee();
+        player.AttackController.CanReload();
 	}
 }

@@ -47,10 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <gravity>k__BackingField: {x: 0, y: -9.81, z: 0}
-  <players>k__BackingField: []
-  gameplayPlayerList: []
+  playerList: []
   <twoPlayerMode>k__BackingField: 0
-  dev: 0
+  <dev>k__BackingField: 0
 --- !u!114 &1499708166071833217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +92,7 @@ MonoBehaviour:
         m_Flags: 0
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 4937878230211308078, guid: 8898f73fa4d8b8349b1f2f341aed9ce4, type: 3}
+  m_PlayerPrefab: {fileID: 7376031149280110184, guid: 23606ed115ac20946871f9194ec88e0f, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1

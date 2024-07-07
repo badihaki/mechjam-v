@@ -8,14 +8,15 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    // these are public so other scripts have access, but value can only be modified here
-    [field: SerializeField] public int playerID { get; private set; }
-    [field: SerializeField] public bool isUsingKBMP { get; private set; } = false;
-    public PlayerControlsManager controls { get; private set; }
-    [field: SerializeField] public Health health { get; private set; }
-    public PlayerLocomotionController locomotionController { get; private set; }
-    public PlayerAttackController attackController { get; private set; }
-    public PlayerUIController uIController { get; private set; }
+	// these are public so other scripts have access, but value can only be modified here
+	[field: SerializeField] public int PlayerID { get; private set; }
+	[field: SerializeField] public bool IsUsingKBMP { get; private set; } = false;
+    public PlayerControlsManager Controls { get; private set; }
+    [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public PlayerLocomotionController LocomotionController { get; private set; }
+    [field: SerializeField] public PlayerAttackController AttackController { get; private set; }
+	[field: SerializeField] public PlayerUIController UIController { get; private set; }
+	[field: SerializeField] public GameObject CharacterModel { get; private set; }
 
     // state machine below
     private PlayerFSM stateMachine;
@@ -23,43 +24,63 @@ public class Player : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        PlayerSetup();
+        // PlayerSetup();
         
         // controls
-        controls = GetComponent<PlayerControlsManager>();
+        Controls = GetComponent<PlayerControlsManager>();
 
         // health
-        health = transform.AddComponent<Health>();
-        health.InitializeHealth(20);
-        health.onHealthChange += DidEntityDie;
+        Health = transform.AddComponent<Health>();
+        Health.InitializeHealth(20);
+        Health.onHealthChange += DidEntityDie;
         
         // locomotion
-        locomotionController = GetComponent<PlayerLocomotionController>();
-        locomotionController.InitializeController(this);
+        LocomotionController = GetComponent<PlayerLocomotionController>();
+        LocomotionController.InitializeController(this);
+        LocomotionController.physicsController.useGravity = false;
+        LocomotionController.enabled = false;
 
         // attack
-        attackController = GetComponent<PlayerAttackController>();
-        attackController.InitializeController(this);
+        AttackController = GetComponent<PlayerAttackController>();
+        AttackController.InitializeController(this);
+        AttackController.enabled = false;
 
         // ui
-        uIController = GetComponent<PlayerUIController>();
-        uIController.InitializeController(this);
+        UIController = GetComponent<PlayerUIController>();
+        UIController.InitializeController(this);
+        UIController.enabled = false;
 
-        // state machine
-        stateMachine = GetComponent<PlayerFSM>();
+        CharacterModel = transform.Find("Char").gameObject;
+		CharacterModel.SetActive(false);
+
+		// state machine
+		stateMachine = GetComponent<PlayerFSM>();
         stateMachine.InitializeStateMachine(this);
     }
 
-    private void PlayerSetup()
+    public void PlayerSetup()
     {
-        playerID = GameMaster.Entity.gameplayPlayerList.Count + 1;
-        GameMaster.Entity.gameplayPlayerList.Add(this);
-        // in full game, go ahead and have game master do this
-        string controlType = GetComponent<PlayerInput>().currentControlScheme;
-        print(controlType);
-        if (controlType == "KBM") isUsingKBMP = true;
-        else isUsingKBMP = false;
+        SetPID(GameMaster.Entity.playerList.Count + 1);
+        GameMaster.Entity.playerList.Add(this);
+		string controlType = GetComponent<PlayerInput>().currentControlScheme;
+        print($"controlType is {controlType}");
+        if (controlType == "KBM") IsUsingKBMP = true;
+        else IsUsingKBMP = false;
     }
+
+    public void StartPlayerGameplay()
+    {
+		LocomotionController.enabled = true;
+		LocomotionController.physicsController.useGravity = true;
+        AttackController.enabled = true;
+		UIController.enabled = true;
+        CharacterModel.SetActive(true);
+        stateMachine.ChangeState(stateMachine.gameplayState);
+
+        // will need to build character later
+    }
+
+    public void SetPID(int id) => PlayerID = id;
 
     // Update is called once per frame
     void Update()
@@ -74,14 +95,14 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        print($"player({playerID}) was killed");
-        GameMaster.Entity.gameplayPlayerList.Remove(this);
+        print($"player({PlayerID}) was killed");
+        GameMaster.Entity.playerList.Remove(this);
         Destroy(gameObject);
     }
 
     public void Damage(Transform entity, int damage, Vector2 force)
     {
-        print($"player({playerID}) was damaged by {entity.name}");
-        health.ChangeHealth(damage);
+        print($"player({PlayerID}) was damaged by {entity.name}");
+        Health.ChangeHealth(damage);
     }
 }

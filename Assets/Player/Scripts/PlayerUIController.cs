@@ -17,32 +17,33 @@ public class PlayerUIController : MonoBehaviour
     public void InitializeController(Player _player)
     {
         player = _player;
-        uiContainer = GameObject.Find("PlayerCanvas").transform.Find($"P{player.playerID}Container");
+        uiContainer = GameObject.Find("PlayerCanvas").transform.Find($"P{player.PlayerID}Container");
+        if(!uiContainer) uiContainer = GameObject.Find("PlayerCanvas").transform.Find($"P1Container");
 
-        SetUpComponents();
+		SetUpComponents();
         SetUpEvents();
     }
 
     private void SetUpComponents()
     {
         healthBar = uiContainer.Find("Health").GetComponent<Slider>();
-        healthBar.maxValue = player.health.maxHealth;
-        healthBar.value = player.health.currentHealth;
+        healthBar.maxValue = player.Health.maxHealth;
+        healthBar.value = player.Health.currentHealth;
 
         portrait = uiContainer.Find("Portrait").GetComponent<Image>();
         
         ammoText = uiContainer.Find("Ammo").GetComponent<TextMeshProUGUI>();
-        ammoText.text = player.attackController.currentAmmo.ToString();
+        ammoText.text = player.AttackController.currentAmmo.ToString();
         
         stockText = uiContainer.Find("Stock").GetComponent<TextMeshProUGUI>();
-        stockText.text = player.attackController.ammoStock.ToString();
+        stockText.text = player.AttackController.ammoStock.ToString();
     }
 
     private void SetUpEvents()
     {
-        player.attackController.onAmmoChanged += ChangeAmmo;
-        player.attackController.onStockChanged += ChangeStock;
-        player.health.onHealthChange += ChangeHealth;
+        player.AttackController.onAmmoChanged += ChangeAmmo;
+        player.AttackController.onStockChanged += ChangeStock;
+        player.Health.onHealthChange += ChangeHealth;
     }
 
     private void OnEnable()
@@ -51,9 +52,9 @@ public class PlayerUIController : MonoBehaviour
     }
     private void OnDisable()
     {
-        player.attackController.onAmmoChanged -= ChangeAmmo;
-        player.attackController.onStockChanged -= ChangeStock;
-        player.health.onHealthChange -= ChangeHealth;
+        player.AttackController.onAmmoChanged -= ChangeAmmo;
+        player.AttackController.onStockChanged -= ChangeStock;
+        player.Health.onHealthChange -= ChangeHealth;
     }
 
     public void ChangeHealth(int health)

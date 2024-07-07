@@ -15,18 +15,19 @@ public class GameplayState : GameState
 	{
 		base.EnterState();
 
-		// GameMaster.Entity.SpawnPlayersInGameWorld();
+		GameMaster.Entity.SpawnPlayersInGameWorld();
 	}
 
 	public override void UpdateGameLogic()
 	{
 		base.UpdateGameLogic();
-
+/*
 		if (Time.time >= stateStartTime + 0.5f && startArena == false)
 		{
 			Debug.Log("spawning players");
 			startArena = true;
 			GameMaster.Entity.SpawnPlayersInGameWorld();
 		}
+*/
 	}
 }

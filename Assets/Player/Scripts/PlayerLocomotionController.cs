@@ -7,7 +7,7 @@ public class PlayerLocomotionController : MonoBehaviour
 {
     private Player player;
     [SerializeField] private float speed = 5.5f;
-    private Rigidbody physicsController;
+    public Rigidbody physicsController { get; private set; }
     [SerializeField] private Vector3 rotationTarget;
     [SerializeField] private float rotationSpeed = 0.25f;
     private WaitForSeconds dashRefreshTime; // how much time before you can dash again
@@ -35,7 +35,7 @@ public class PlayerLocomotionController : MonoBehaviour
 
     public void ControlMovement()
     {
-        if (player.isUsingKBMP)
+        if (player.IsUsingKBMP)
         {
             // kbm
             KbmMove();
@@ -50,7 +50,7 @@ public class PlayerLocomotionController : MonoBehaviour
     private void KbmMove()
     {
         RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(player.controls.lookInputKbm);
+        Ray ray = cam.ScreenPointToRay(player.Controls.lookInputKbm);
 
         if (Physics.Raycast(ray, out hit))
         {
@@ -61,13 +61,13 @@ public class PlayerLocomotionController : MonoBehaviour
 
     private void GamepadMove()
     {
-        if (player.controls.lookInputGamepad == Vector2.zero) MovePlayer();
+        if (player.Controls.lookInputGamepad == Vector2.zero) MovePlayer();
         else MovePlayerWithAim();
     }
 
     private void MovePlayer()
     {
-        Vector3 movement = new Vector3(player.controls.moveInput.x, physicsController.velocity.y, player.controls.moveInput.y);
+        Vector3 movement = new Vector3(player.Controls.moveInput.x, physicsController.velocity.y, player.Controls.moveInput.y);
 
         if (movement != Vector3.zero)
         {
@@ -79,7 +79,7 @@ public class PlayerLocomotionController : MonoBehaviour
 
     private void MovePlayerWithAim()
     {
-        if (player.isUsingKBMP)
+        if (player.IsUsingKBMP)
         {
             Vector3 lookPosition = rotationTarget - transform.position;
             lookPosition.y = 0.0f;
@@ -93,14 +93,14 @@ public class PlayerLocomotionController : MonoBehaviour
         }
         else
         {
-            Vector3 aimDirection = new Vector3(player.controls.lookInputGamepad.x, 0.0f, player.controls.lookInputGamepad.y);
+            Vector3 aimDirection = new Vector3(player.Controls.lookInputGamepad.x, 0.0f, player.Controls.lookInputGamepad.y);
             if (aimDirection != Vector3.zero)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(aimDirection), rotationSpeed);
             }
         }
 
-        Vector3 movement = new Vector3(player.controls.moveInput.x, 0.0f, player.controls.moveInput.y);
+        Vector3 movement = new Vector3(player.Controls.moveInput.x, 0.0f, player.Controls.moveInput.y);
         // Vector3 movement = new Vector3(player.controls.moveInput.x, GameMaster.Entity.gravity.y, player.controls.moveInput.y);
 
         physicsController.velocity = movement * speed;
@@ -108,7 +108,7 @@ public class PlayerLocomotionController : MonoBehaviour
 
     public void CanBoostDash()
     {
-        if (dashAvailable && player.controls.dashInput)
+        if (dashAvailable && player.Controls.dashInput)
         {
             StartCoroutine(BoostDash());
             StartCoroutine(ResetDash());
@@ -137,7 +137,7 @@ public class PlayerLocomotionController : MonoBehaviour
         dashTimer += timeToDash;
         
         // get direction of dash
-        Vector3 movement = new Vector3(player.controls.moveInput.x, 0.0f, player.controls.moveInput.y);
+        Vector3 movement = new Vector3(player.Controls.moveInput.x, 0.0f, player.Controls.moveInput.y);
         if (movement == Vector3.zero) movement = transform.forward;
 
         // apply direction and dashForce to physicsController's velocity

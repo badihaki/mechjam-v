@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[SerializeField, Serializable]
 public class GameState
 {
 	protected GMFiniteStateMachine gameStateManager;
-	protected string stateName;
+	public string stateName { get; protected set; }
 
 
 	public GameState(GMFiniteStateMachine fsm, string name)
