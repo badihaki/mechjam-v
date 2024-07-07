@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <playerId>k__BackingField: 0
-  <playerGameplayPrefab>k__BackingField: {fileID: 4937878230211308078}
+  <playerGameplayPrefab>k__BackingField: {fileID: 7376031149280110184, guid: 23606ed115ac20946871f9194ec88e0f, type: 3}
 --- !u!114 &2832156739123051767
 MonoBehaviour:
   m_ObjectHideFlags: 0
