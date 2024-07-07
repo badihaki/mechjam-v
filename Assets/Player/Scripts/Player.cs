@@ -21,6 +21,9 @@ public class Player : MonoBehaviour, IDamageable
     // state machine below
     private PlayerFSM stateMachine;
 
+    // dev mode
+    [SerializeField] private bool devMode = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +55,7 @@ public class Player : MonoBehaviour, IDamageable
 		// state machine
 		stateMachine = GetComponent<PlayerFSM>();
         stateMachine.InitializeStateMachine(this);
+        if (devMode) StartDevMode();
     }
 
     public void PlayerSetup()
@@ -59,10 +63,23 @@ public class Player : MonoBehaviour, IDamageable
         SetPID(GameMaster.Entity.playerList.Count + 1);
         gameObject.name = $"P-{PlayerID}";
         GameMaster.Entity.playerList.Add(this);
-		string controlType = GetComponent<PlayerInput>().currentControlScheme;
+        SetControlType();
+    }
+
+    private void SetControlType()
+    {
+        string controlType = GetComponent<PlayerInput>().currentControlScheme;
         print($"controlType is {controlType}");
         if (controlType == "KBM") IsUsingKBMP = true;
         else IsUsingKBMP = false;
+    }
+
+    private void StartDevMode()
+    {
+        print("starting gameplay in ~DEV MODE~");
+        SetPID(1);
+        SetControlType();
+        StartPlayerGameplay();
     }
 
     public void StartPlayerGameplay()

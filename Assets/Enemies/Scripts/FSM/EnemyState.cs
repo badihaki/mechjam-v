@@ -35,10 +35,15 @@ public class EnemyState : ScriptableObject
 
     public virtual void LogicUpdate()
     {
-        CheckTransitions();
+        if(!isExitingState)
+        {
+            CheckTransitions();
+        }
     }
     public virtual void PhysicsUpdate() { }
 
     public virtual void CheckTransitions() { }
+
+    public virtual void AnimationEnd() { }
 
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
 {
-    [SerializeField] private EnemyState currentState;
-    [field: SerializeField] public EnemySceneEnterState sceneEnterState { get; private set; }
+    [Header("Current State"), SerializeField] private EnemyState currentState;
+    [field: SerializeField, Header("List of States")] public EnemySceneEnterState sceneEnterState { get; private set; }
     [field: SerializeField] public EnemyGameplayState gameplayState { get; private set; }
 
     public void InitializeFSM(Enemy enemy)
@@ -25,12 +25,12 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void Update()
     {
-        currentState.LogicUpdate();
+        currentState?.LogicUpdate();
     }
 
     private void FixedUpdate()
     {
-        currentState.PhysicsUpdate();
+        currentState?.PhysicsUpdate();
     }
 
     public void ChangeState(EnemyState state)
@@ -39,4 +39,6 @@ public class EnemyStateMachine : MonoBehaviour
         currentState = state;
         currentState.EnterState();
     }
+
+    public void AnimationEndTriggered() => currentState.AnimationEnd();
 }
