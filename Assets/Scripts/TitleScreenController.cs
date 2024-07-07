@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TitleScreenController : MonoBehaviour
 {
@@ -20,4 +21,10 @@ public class TitleScreenController : MonoBehaviour
     {
         GameMaster.Entity.StartGame(twoPlayers);
     }
+	public void OnPlayerJoined(PlayerInput playerInput)
+	{
+		Player player = playerInput.GetComponent<Player>();
+		player.PlayerSetup();
+        print($"player{player.PlayerID} is ready");
+	}
 }

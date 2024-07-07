@@ -237,7 +237,6 @@ GameObject:
   - component: {fileID: 5571052996602774903}
   - component: {fileID: 913419244228836068}
   - component: {fileID: 4613164862998707594}
-  - component: {fileID: 3602625139754877051}
   - component: {fileID: 5448238470297491793}
   - component: {fileID: 5141908647726735576}
   m_Layer: 0
@@ -276,9 +275,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210fe0e99fa425943b074445841ba08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <playerID>k__BackingField: 0
-  <isUsingKBMP>k__BackingField: 0
-  <health>k__BackingField: {fileID: 0}
+  <PlayerID>k__BackingField: 0
+  <IsUsingKBMP>k__BackingField: 0
+  <Health>k__BackingField: {fileID: 0}
+  <LocomotionController>k__BackingField: {fileID: 0}
+  <AttackController>k__BackingField: {fileID: 0}
+  <UIController>k__BackingField: {fileID: 0}
+  <CharacterModel>k__BackingField: {fileID: 0}
 --- !u!114 &588055258887128989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,23 +495,6 @@ MonoBehaviour:
   meleeRechargeTime: 1.2
   isReloading: 0
   shootPoint: {fileID: 0}
---- !u!114 &3602625139754877051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7376031149280110184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba74124be58cc6046a919f1887762cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiContainer: {fileID: 0}
-  healthBar: {fileID: 0}
-  portrait: {fileID: 0}
-  ammoText: {fileID: 0}
-  stockText: {fileID: 0}
 --- !u!54 &5448238470297491793
 Rigidbody:
   m_ObjectHideFlags: 0

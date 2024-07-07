@@ -25,6 +25,7 @@ public class Player : MonoBehaviour, IDamageable
     void Start()
     {
         // PlayerSetup();
+        DontDestroyOnLoad(gameObject);
         
         // controls
         Controls = GetComponent<PlayerControlsManager>();
@@ -45,11 +46,6 @@ public class Player : MonoBehaviour, IDamageable
         AttackController.InitializeController(this);
         AttackController.enabled = false;
 
-        // ui
-        UIController = GetComponent<PlayerUIController>();
-        UIController.InitializeController(this);
-        UIController.enabled = false;
-
         CharacterModel = transform.Find("Char").gameObject;
 		CharacterModel.SetActive(false);
 
@@ -61,6 +57,7 @@ public class Player : MonoBehaviour, IDamageable
     public void PlayerSetup()
     {
         SetPID(GameMaster.Entity.playerList.Count + 1);
+        gameObject.name = $"P-{PlayerID}";
         GameMaster.Entity.playerList.Add(this);
 		string controlType = GetComponent<PlayerInput>().currentControlScheme;
         print($"controlType is {controlType}");
@@ -73,7 +70,12 @@ public class Player : MonoBehaviour, IDamageable
 		LocomotionController.enabled = true;
 		LocomotionController.physicsController.useGravity = true;
         AttackController.enabled = true;
-		UIController.enabled = true;
+
+        // ui
+		UIController = transform.AddComponent<PlayerUIController>();
+		UIController.InitializeController(this);
+        
+        // character model
         CharacterModel.SetActive(true);
         stateMachine.ChangeState(stateMachine.gameplayState);
 

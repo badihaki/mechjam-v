@@ -50,11 +50,13 @@ public class GameMaster : MonoBehaviour
 
     }
 
+/*
     public void OnPlayerJoined(PlayerInput playerInput)
     {
         Player player = playerInput.GetComponent<Player>();
         player.PlayerSetup();
     }
+*/
 
     public void StartGame(bool twoPlayer)
     {
