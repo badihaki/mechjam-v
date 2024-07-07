@@ -69,6 +69,7 @@ public class Player : MonoBehaviour, IDamageable
     {
 		LocomotionController.enabled = true;
 		LocomotionController.physicsController.useGravity = true;
+        LocomotionController.GetNewCamera();
         AttackController.enabled = true;
 
         // ui

@@ -23,13 +23,14 @@ public class PlayerLocomotionController : MonoBehaviour
     {
         player = _player;
         physicsController = GetComponent<Rigidbody>();
-        cam = Camera.main;
         movementEnabled = true;
         dashRefreshTime = new WaitForSeconds(1.50f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GetNewCamera() => cam = Camera.main;
+
+	// Update is called once per frame
+	void Update()
     {
     }
 

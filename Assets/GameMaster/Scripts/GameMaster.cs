@@ -13,6 +13,7 @@ public class GameMaster : MonoBehaviour
     [field: SerializeField] public bool twoPlayerMode { get; private set; } = false;
     public GMFiniteStateMachine stateMachine { get; private set; }
     [field: SerializeField] public bool dev { get; private set; } = false;
+    [field: SerializeField] public FloorManager currentFloor { get; private set; }
 
     private void OnEnable()
     {
@@ -62,6 +63,15 @@ public class GameMaster : MonoBehaviour
     {
         twoPlayerMode = twoPlayer;
         if (dev) ChangeGameScene(1);
+    }
+
+    public void BeginGameplay(FloorManager newFloor)
+    {
+        if (dev) stateMachine.ChangeGameState(stateMachine.devState);
+        else
+        {
+            stateMachine.ChangeGameState(stateMachine.gameplayState);
+        }
     }
 
 	private void ChangeGameScene(int sceneId)

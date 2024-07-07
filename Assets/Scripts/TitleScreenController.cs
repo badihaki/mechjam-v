@@ -19,7 +19,7 @@ public class TitleScreenController : MonoBehaviour
 
     public void StartGame(bool twoPlayers)
     {
-        GameMaster.Entity.StartGame(twoPlayers);
+        if (GameMaster.Entity.playerList.Count > 0) GameMaster.Entity.StartGame(twoPlayers);
     }
 	public void OnPlayerJoined(PlayerInput playerInput)
 	{
