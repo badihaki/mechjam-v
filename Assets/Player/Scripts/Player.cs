@@ -52,8 +52,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void PlayerSetup()
     {
-        playerID = GameMaster.Entity.playerList.Count + 1;
-        GameMaster.Entity.playerList.Add(this);
+        playerID = GameMaster.Entity.gameplayPlayerList.Count + 1;
+        GameMaster.Entity.gameplayPlayerList.Add(this);
         // in full game, go ahead and have game master do this
         string controlType = GetComponent<PlayerInput>().currentControlScheme;
         print(controlType);
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour, IDamageable
     private void Die()
     {
         print($"player({playerID}) was killed");
-        GameMaster.Entity.playerList.Remove(this);
+        GameMaster.Entity.gameplayPlayerList.Remove(this);
         Destroy(gameObject);
     }
 

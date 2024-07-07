@@ -6,7 +6,8 @@ using UnityEngine;
 public class EnemyStateMachine : MonoBehaviour
 {
     [SerializeField] private EnemyState currentState;
-    [SerializeField] private EnemySceneEnterState sceneEnterState;
+    [field: SerializeField] public EnemySceneEnterState sceneEnterState { get; private set; }
+    [field: SerializeField] public EnemyGameplayState gameplayState { get; private set; }
 
     public void InitializeFSM(Enemy enemy)
     {
@@ -18,8 +19,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void SetUpStates(Enemy enemy)
     {
-        sceneEnterState = ScriptableObject.CreateInstance<EnemySceneEnterState>();
-        sceneEnterState.InitState("enter", enemy, this);
+        if (sceneEnterState) sceneEnterState.InitState("enter", enemy, this);
+        if (gameplayState) gameplayState.InitState("gameplay", enemy, this);
     }
 
     private void Update()

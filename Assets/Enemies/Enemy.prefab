@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8599391827186290192}
   - component: {fileID: 7893434464016237833}
   - component: {fileID: 1602178824798994066}
+  - component: {fileID: 4102352830971263621}
+  - component: {fileID: 8779861839852313876}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: UnityEngine.Random.Range(healthRange.x, healthRange.y)
@@ -112,6 +114,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2fc88a3f7d08ac47a8f1f2ffed32f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: {fileID: 0}
+  sceneEnterState: {fileID: 11400000, guid: e3462ad75d23dd3499f7cd90a9b529ef, type: 2}
+--- !u!114 &4102352830971263621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771751864557174826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3d87c648635a34bab63131cb2f554d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3.5
+  minAndMaxRange: {x: 3, y: 5}
+  navigationTarget: {fileID: 0}
+--- !u!195 &8779861839852313876
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771751864557174826}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5174396886980406617
 GameObject:
   m_ObjectHideFlags: 0

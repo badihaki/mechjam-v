@@ -6,15 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemySceneStartState", menuName = "Game/Enemy/Enemy State/Scene Start"), Serializable]
 public class EnemySceneEnterState : EnemyState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public override void CheckTransitions()
+	{
+		base.CheckTransitions();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		if(Time.time >= stateStartTime + 2.55f)
+		{
+			stateMachine.ChangeState(stateMachine.gameplayState);
+		}
+	}
 }

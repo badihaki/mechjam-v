@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [field: SerializeField] public Health health { get; private set; }
     [field: SerializeField] public Transform target { get; private set; }
+    public EnemyLocomotionController locomotionController { get; private set; }
 
 
     // Start is called before the first frame update
@@ -19,19 +20,24 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void InitializeEntity(Vector2 healthRange)
     {
+        // health
         health = transform.AddComponent<Health>();
         int healthValue = (int)Mathf.Round(UnityEngine.Random.Range(healthRange.x, healthRange.y));
         health.InitializeHealth(healthValue);
         health.onHealthChange += DidEntityDie;
+
+        // locomotion
+        locomotionController = GetComponent<EnemyLocomotionController>();
+        locomotionController.InitiializeController(this);
 
         FindNewPlayerTarget();
     }
 
     public void FindNewPlayerTarget()
     {
-        int playerIndex = (int)Mathf.Round(UnityEngine.Random.Range(0, GameMaster.Entity.playerList.Count - 1));
+        int playerIndex = (int)Mathf.Round(UnityEngine.Random.Range(0, GameMaster.Entity.gameplayPlayerList.Count - 1));
         print(playerIndex);
-        target = GameMaster.Entity.playerList[playerIndex].transform;
+        target = GameMaster.Entity.gameplayPlayerList[playerIndex].transform;
     }
 
     private void OnEnable()
