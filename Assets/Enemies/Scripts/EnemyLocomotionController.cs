@@ -6,11 +6,11 @@ using UnityEngine.AI;
 public class EnemyLocomotionController : MonoBehaviour
 {
     private Enemy enemy;
-    [SerializeField] private float speed = 3.5f;
-    [SerializeField] private Vector2 minAndMaxRange = new Vector2(3.0f, 5.0f);
+    [field: SerializeField] public float speed { get; private set; } = 4.75f;
+    [field: SerializeField] public float dashSpeed { get; private set; } = 6.075f;
+    [field: SerializeField] public Vector2 minAndMaxRange { get; private set; } = new Vector2(10.25f, 13.557f);
     private NavMeshAgent navAgent;
     private Rigidbody physicsController;
-    [SerializeField] private Transform navigationTarget;
 
     public void InitiializeController(Enemy _enemy)
     {
@@ -27,19 +27,29 @@ public class EnemyLocomotionController : MonoBehaviour
         
     }
 
-    public void FindNewNavTarget()
+    public bool TryMoveToTarget()
     {
-        if (!enemy.target)
+        if (enemy.target && enemy.target.position.magnitude > minAndMaxRange.y)
         {
-
-            print("need target");
+            if(navAgent.isStopped) navAgent.isStopped = false;
+            SetAgentSpeed();
+            navAgent.SetDestination(enemy.target.position);
+            return true;
         }
-        else
-        {
-            navigationTarget = enemy.target;
+        navAgent.isStopped = true;
+        return false;
+    }
 
-		}
-        navAgent.SetDestination(navigationTarget.position);
+    public void SetAgentSpeed()
+    {
+        float distance = Vector3.Distance(enemy.target.position, transform.position);
+        if (distance > minAndMaxRange.y + 2.35f) navAgent.speed = dashSpeed;
+        else navAgent.speed = speed;
+    }
+
+    public void LookAtTarget()
+    {
+        if (enemy.target) transform.LookAt(enemy.target.position);
     }
 
     public void ZeroVelocity()

@@ -43,6 +43,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void FindNewPlayerTarget()
     {
+        print(GameMaster.Entity);
+        if (GameMaster.Entity.dev)
+        {
+            target = GameObject.Find("Player").transform;
+            return;
+        }
         int playerIndex = (int)Mathf.Round(UnityEngine.Random.Range(0, GameMaster.Entity.playerList.Count - 1));
         print(playerIndex);
         target = GameMaster.Entity.playerList[playerIndex].transform;

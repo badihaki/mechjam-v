@@ -15,6 +15,20 @@ public class GameMaster : MonoBehaviour
     [field: SerializeField] public bool dev { get; private set; } = false;
     [field: SerializeField] public FloorManager currentFloor { get; private set; }
 
+    private void Awake()
+    {
+        if (Entity == null && Entity != this)
+        {
+            Entity = this;
+            InitializeGame();
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            print("gm singleton detected");
+            Destroy(gameObject);
+        }
+    }
     private void OnEnable()
     {
         if (Entity != this && Entity != null)
@@ -26,17 +40,7 @@ public class GameMaster : MonoBehaviour
 
     private void Start()
     {
-        if (Entity == null)
-        {
-            Entity = this;
-            InitializeGame();
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            print("gm singleton detected");
-            Destroy(gameObject);
-        }
+
     }
 
     private void InitializeGame()
@@ -62,7 +66,12 @@ public class GameMaster : MonoBehaviour
     public void StartGame(bool twoPlayer)
     {
         twoPlayerMode = twoPlayer;
-        if (dev) ChangeGameScene(1);
+        ChangeGameScene(2);
+    }
+
+    public void StartDevRoom()
+    {
+        ChangeGameScene(1);
     }
 
     public void BeginGameplay(FloorManager newFloor)
@@ -74,7 +83,7 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-	private void ChangeGameScene(int sceneId)
+	public void ChangeGameScene(int sceneId)
 	{
 		SceneManager.LoadScene(sceneId);
 	}
