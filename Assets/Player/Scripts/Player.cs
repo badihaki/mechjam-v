@@ -76,7 +76,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void StartDevMode()
     {
-        print("starting gameplay in ~DEV MODE~");
+        print("GM is starting gameplay in ~DEV MODE~");
         SetPID(1);
         SetControlType();
         StartPlayerGameplay();

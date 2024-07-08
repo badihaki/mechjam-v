@@ -19,7 +19,9 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void SetUpStates(Enemy enemy)
     {
+        sceneEnterState = ScriptableObject.CreateInstance<EnemySceneEnterState>();
         if (sceneEnterState) sceneEnterState.InitState("enter", enemy, this);
+        gameplayState = ScriptableObject.CreateInstance<EnemyGameplayState>();
         if (gameplayState) gameplayState.InitState("gameplay", enemy, this);
     }
 

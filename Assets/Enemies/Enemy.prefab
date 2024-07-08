@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 0}
-  <sceneEnterState>k__BackingField: {fileID: 11400000, guid: e3462ad75d23dd3499f7cd90a9b529ef, type: 2}
-  <gameplayState>k__BackingField: {fileID: 11400000, guid: 5748a862476a50442bf69009b13dcd9c, type: 2}
+  <sceneEnterState>k__BackingField: {fileID: 0}
+  <gameplayState>k__BackingField: {fileID: 0}
 --- !u!114 &4102352830971263621
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class GameState
 	{
 		isExitingState = false;
 		stateStartTime = Time.time;
-		Debug.Log($"Entering state {stateName}");
+		Debug.Log($"GM is Entering state {stateName}");
 	}
 	public virtual void ExitState()
 	{

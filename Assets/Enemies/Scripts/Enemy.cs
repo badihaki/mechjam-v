@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void FindNewPlayerTarget()
     {
-        print(GameMaster.Entity);
         if (GameMaster.Entity.dev)
         {
             target = GameObject.Find("Player").transform;
