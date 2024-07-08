@@ -10,7 +10,8 @@ public class Enemy : MonoBehaviour, IDamageable
     [field: SerializeField] public Health health { get; private set; }
     [field: SerializeField] public Transform target { get; private set; }
     public EnemyLocomotionController locomotionController { get; private set; }
-    [field: SerializeField] public EnemyStateMachine stateMachine { get; private set; }
+    public EnemyAttackController attackController { get; private set; }
+    [field: SerializeField, Header("State Machine")] public EnemyStateMachine stateMachine { get; private set; }
 
 
     // Start is called before the first frame update
@@ -31,7 +32,14 @@ public class Enemy : MonoBehaviour, IDamageable
         locomotionController = GetComponent<EnemyLocomotionController>();
         locomotionController.InitiializeController(this);
 
+        // attack
+        attackController = GetComponent<EnemyAttackController>();
+        attackController.InitializeController(this);
+
+        // state machine
         BuildStateMachine();
+
+        // find player
         FindNewPlayerTarget();
     }
 

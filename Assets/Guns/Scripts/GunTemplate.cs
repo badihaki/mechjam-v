@@ -11,4 +11,5 @@ public class GunTemplate : ScriptableObject
 	public int maxAmmo;
 	public float reloadTime;
 	public GameObject projectile;
+	public GameObject enemyProjectile;
 }

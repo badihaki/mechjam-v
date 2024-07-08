@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &311447868176278761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1999913932587428536}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1999913932587428536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311447868176278761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 905088583793306265}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4771751864557174826
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +45,7 @@ GameObject:
   - component: {fileID: 7893434464016237833}
   - component: {fileID: 1602178824798994066}
   - component: {fileID: 4102352830971263621}
+  - component: {fileID: 2881443415114776952}
   - component: {fileID: 8779861839852313876}
   m_Layer: 0
   m_Name: Enemy
@@ -36,6 +68,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6348934169099068086}
+  - {fileID: 1999913932587428536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &46577078111966709
@@ -130,9 +163,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3d87c648635a34bab63131cb2f554d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
-  dashSpeed: 6.075
-  minAndMaxRange: {x: 10, y: 13.5}
+  <speed>k__BackingField: 4.75
+  <dashSpeed>k__BackingField: 6.075
+  <minAndMaxRange>k__BackingField: {x: 10.25, y: 13.557}
+--- !u!114 &2881443415114776952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771751864557174826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f10b7c6b3715747a8c8339b507c76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <gun>k__BackingField: {fileID: 11400000, guid: 6bb7d65458dd5b7428a6dfb15a9d6e8c, type: 2}
+  <isAttacking>k__BackingField: 0
+  waitToAttackTimer: 0
+  isAttackingTimer: 0
+  attackFireRate: 0
+  shootPoint: {fileID: 1999913932587428536}
 --- !u!195 &8779861839852313876
 NavMeshAgent:
   m_ObjectHideFlags: 0

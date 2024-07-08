@@ -22,7 +22,7 @@ public class EnemyGameplayState : EnemyState
     private void CreateNewDestinationWait(float min, float max)
     {
         float newTime = UnityEngine.Random.Range(min, max);
-        Debug.Log($"adding {newTime} to {entity.name}'s wait time");
+        // Debug.Log($"adding {newTime} to {entity.name}'s wait time");
         newDestinationTimer = newTime;
     }
 
@@ -30,9 +30,22 @@ public class EnemyGameplayState : EnemyState
     {
         base.LogicUpdate();
 
-        entity.locomotionController.LookAtTarget();
-
+        if (entity.attackController.isAttacking)
+        {
+            entity.attackController.ControlAttackTimer();
+        }
+        else
+        {
+            entity.attackController.ControlAttackWaitTimer();
+        }
         ControlDestinationTimer();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+
+        entity.locomotionController.LookAtTarget();
     }
 
     private void ControlDestinationTimer()
