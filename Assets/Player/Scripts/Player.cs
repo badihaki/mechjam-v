@@ -123,6 +123,6 @@ public class Player : MonoBehaviour, IDamageable
     public void Damage(Transform entity, int damage, Vector2 force)
     {
         print($"player({PlayerID}) was damaged by {entity.name}");
-        Health.ChangeHealth(damage);
+        Health.ChangeHealth(Health.currentHealth - damage);
     }
 }
