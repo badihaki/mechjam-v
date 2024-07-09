@@ -24,6 +24,7 @@ public class PlayerAttackController : MonoBehaviour
     public void InitializeController(Player _player)
 	{
 		player = _player;
+		StartCoroutine(SelectGunStyle());
 		currentAmmo = gun.maxAmmo;
 		if (onAmmoChanged != null) onAmmoChanged(currentAmmo);
         ammoStock = 3;
@@ -38,11 +39,28 @@ public class PlayerAttackController : MonoBehaviour
 	}
 
 	public void GetNewGun(GunTemplate newWeapon)
-	{
-		gun = newWeapon;
-	}
+    {
+        gun = newWeapon;
+        StartCoroutine(SelectGunStyle());
+    }
 
-	public void CanShoot()
+    private IEnumerator SelectGunStyle()
+    {
+		yield return null;
+        switch (gun.gunStyle)
+        {
+            case GunStyle.oneHand:
+				print($"gun style is switched to {gun.gunStyle}");
+                player.AnimationController.SetBool("1H", true); // oneHand
+                // player.AnimationController.SetBool("oneHand", true); // oneHand
+                player.AnimationController.SetBool("freefall", true); // oneHand
+                player.AnimationController.SetBool("2H", false);
+                player.AnimationController.SetBool("dual", false);
+                break;
+        }
+    }
+
+    public void CanShoot()
 	{
 		if (gun && player.Controls.shootInput)
 		{

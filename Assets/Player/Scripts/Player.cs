@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IDamageable
     [field: SerializeField] public PlayerAttackController AttackController { get; private set; }
 	[field: SerializeField] public PlayerUIController UIController { get; private set; }
 	[field: SerializeField] public GameObject CharacterModel { get; private set; }
+    [field:SerializeField] public Animator AnimationController {  get; private set; }
 
     // state machine below
     private PlayerFSM stateMachine;
@@ -33,6 +34,13 @@ public class Player : MonoBehaviour, IDamageable
         // controls
         Controls = GetComponent<PlayerControlsManager>();
 
+        // character model
+        CharacterModel = transform.Find("Char").gameObject;
+        CharacterModel.SetActive(false);
+
+        // animation
+        AnimationController = CharacterModel.GetComponent<Animator>();
+
         // health
         Health = transform.AddComponent<Health>();
         Health.InitializeHealth(20);
@@ -48,9 +56,6 @@ public class Player : MonoBehaviour, IDamageable
         AttackController = GetComponent<PlayerAttackController>();
         AttackController.InitializeController(this);
         AttackController.enabled = false;
-
-        CharacterModel = transform.Find("Char").gameObject;
-		CharacterModel.SetActive(false);
 
 		// state machine
 		stateMachine = GetComponent<PlayerFSM>();

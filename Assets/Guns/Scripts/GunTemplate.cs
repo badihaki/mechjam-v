@@ -12,4 +12,5 @@ public class GunTemplate : ScriptableObject
 	public float reloadTime;
 	public GameObject projectile;
 	public GameObject enemyProjectile;
+	public GunStyle gunStyle;
 }
