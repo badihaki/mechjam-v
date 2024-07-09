@@ -14,6 +14,7 @@ public class PlayerAttackController : MonoBehaviour
 	[SerializeField] private float meleeRechargeTime = 1.2f;
 	[SerializeField] private bool isReloading = false;
 	[SerializeField] private Transform shootPoint;
+	private bool isShooting = false;
 
 	// events
 	public delegate void AmmoChanged(int ammo);
@@ -36,6 +37,7 @@ public class PlayerAttackController : MonoBehaviour
 	{
 		if(fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
 		else if(fireRateTimer < 0) fireRateTimer = 0;
+		player.AnimationController.SetBool("shoot", isShooting);
 	}
 
 	public void GetNewGun(GunTemplate newWeapon)
@@ -65,12 +67,14 @@ public class PlayerAttackController : MonoBehaviour
 		if (gun && player.Controls.shootInput)
 		{
 			if (currentAmmo > 0 && fireRateTimer <= 0) Shoot();
+			else isShooting = false;
 		}
 	}
 
 	private void Shoot()
 	{
 		// print("shooting");
+		isShooting = true;
 		currentAmmo--;
         onAmmoChanged(currentAmmo);
         fireRateTimer += gun.fireRate;

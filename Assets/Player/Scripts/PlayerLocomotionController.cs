@@ -7,6 +7,7 @@ public class PlayerLocomotionController : MonoBehaviour
 {
     private Player player;
     [SerializeField] private float speed = 5.5f;
+    [SerializeField] private float currentSpeed;
     public Rigidbody physicsController { get; private set; }
     [SerializeField] private Vector3 rotationTarget;
     [SerializeField] private float rotationSpeed = 0.25f;
@@ -32,6 +33,7 @@ public class PlayerLocomotionController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+        player.AnimationController.SetFloat("speed", currentSpeed);
     }
 
     public void ControlMovement()
@@ -74,7 +76,7 @@ public class PlayerLocomotionController : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), rotationSpeed);
         }
-
+        currentSpeed = Mathf.Clamp(movement.magnitude, 0.0f, 1.0f);
         physicsController.velocity = movement * speed;
     }
 
@@ -102,7 +104,8 @@ public class PlayerLocomotionController : MonoBehaviour
         }
 
         Vector3 movement = new Vector3(player.Controls.moveInput.x, 0.0f, player.Controls.moveInput.y);
-        // Vector3 movement = new Vector3(player.controls.moveInput.x, GameMaster.Entity.gravity.y, player.controls.moveInput.y);
+
+        currentSpeed = Mathf.Clamp(movement.magnitude, 0.0f, 1.0f);
 
         physicsController.velocity = movement * speed;
     }
