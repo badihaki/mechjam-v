@@ -924,6 +924,7 @@ MonoBehaviour:
   <AttackController>k__BackingField: {fileID: 0}
   <UIController>k__BackingField: {fileID: 0}
   <CharacterModel>k__BackingField: {fileID: 0}
+  <AnimationController>k__BackingField: {fileID: 0}
   devMode: 0
 --- !u!114 &588055258887128989
 MonoBehaviour:
@@ -1111,6 +1112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5.5
+  currentSpeed: 0
   rotationTarget: {x: 0, y: 0, z: 0}
   rotationSpeed: 0.25
   timeToDash: 0.15
@@ -1138,6 +1140,10 @@ MonoBehaviour:
   meleeRechargeTime: 1.2
   isReloading: 0
   shootPoint: {fileID: 0}
+  rightWeaponPoint: {fileID: 0}
+  rightWeapon: {fileID: 0}
+  leftWeaponPoint: {fileID: 0}
+  leftWeapon: {fileID: 0}
 --- !u!54 &5448238470297491793
 Rigidbody:
   m_ObjectHideFlags: 0

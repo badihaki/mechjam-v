@@ -18,6 +18,7 @@ public class PlayerLocomotionController : MonoBehaviour
     [SerializeField] private float dashForce = 35.0f;
     [field: SerializeField] public bool movementEnabled { get; private set; }
 
+
     private Camera cam;
 
     public void InitializeController(Player _player)

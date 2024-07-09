@@ -13,4 +13,5 @@ public class GunTemplate : ScriptableObject
 	public GameObject projectile;
 	public GameObject enemyProjectile;
 	public GunStyle gunStyle;
+	public GameObject rightObj, leftObj;
 }

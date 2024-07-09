@@ -99,7 +99,8 @@ public class GameMaster : MonoBehaviour
         */
         for (int i = 0; i < playerList.Count; i++)
         {
-			// Player player = Instantiate(playerList[i], spawn.position, Quaternion.identity);
+            // Player player = Instantiate(playerList[i], spawn.position, Quaternion.identity);
+            print($"try to find spawn with id of {playerList[i].PlayerID}");
 			Transform spawn = GameObject.Find($"P{playerList[i].PlayerID}Spawn").transform;
 			Player player = playerList[i];
             player.transform.position = spawn.position;

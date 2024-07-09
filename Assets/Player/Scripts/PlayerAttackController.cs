@@ -22,16 +22,26 @@ public class PlayerAttackController : MonoBehaviour
 	public delegate void StockChanged(int ammo);
 	public event StockChanged onStockChanged;
 
+    [SerializeField] private Transform rightWeaponPoint;
+	[SerializeField] private GameObject rightWeapon;
+    [SerializeField] private Transform leftWeaponPoint;
+	[SerializeField] private GameObject leftWeapon;
+
     public void InitializeController(Player _player)
 	{
 		player = _player;
-		StartCoroutine(SelectGunStyle());
 		currentAmmo = gun.maxAmmo;
 		if (onAmmoChanged != null) onAmmoChanged(currentAmmo);
         ammoStock = 3;
 		if (onStockChanged != null) onStockChanged(ammoStock);
 		shootPoint = transform.Find("ShootPoint");
-	}
+        
+		rightWeaponPoint = player.CharacterModel.transform.Find("Rig").Find("Root").Find("Pelvis").Find("Torso").Find("Hand.R").Find("Weapon.R");
+        leftWeaponPoint = player.CharacterModel.transform.Find("Rig").Find("Root").Find("Pelvis").Find("Torso").Find("Hand.L").Find("Weapon.L");
+
+		StartCoroutine(SelectGunStyle());
+		SwitchGunObject();
+    }
 
 	private void Update()
 	{
@@ -43,8 +53,22 @@ public class PlayerAttackController : MonoBehaviour
 	public void GetNewGun(GunTemplate newWeapon)
     {
         gun = newWeapon;
+		SwitchGunObject();
         StartCoroutine(SelectGunStyle());
     }
+
+    private void SwitchGunObject()
+	{
+		if (rightWeapon)
+		{
+			Destroy(rightWeapon.gameObject);
+			rightWeapon = null;
+		}
+		if (gun.rightObj)
+		{
+			rightWeapon = Instantiate(gun.rightObj, rightWeaponPoint);
+		}
+	}
 
     private IEnumerator SelectGunStyle()
     {

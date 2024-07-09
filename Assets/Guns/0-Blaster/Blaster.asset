@@ -19,3 +19,6 @@ MonoBehaviour:
   reloadTime: 1.2
   projectile: {fileID: 4263766586755111797, guid: 54b8c270e6b8cf74eb1a3f8d73c80971, type: 3}
   enemyProjectile: {fileID: 4263766586755111797, guid: 452c3d49b61e05245b0f0688c3ca5232, type: 3}
+  gunStyle: 0
+  rightObj: {fileID: 7320654942715955672, guid: aff1eeff66052ac45a6a02d763f8b677, type: 3}
+  leftObj: {fileID: 0}
