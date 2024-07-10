@@ -119,6 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  speed: 28.5
+  speed: 40
   forces: {x: 0, y: 0}
   impactVfx: {fileID: 0}

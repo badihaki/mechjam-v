@@ -10,8 +10,11 @@ public class DevState : GameplayState
 
 	public override void EnterState()
 	{
+		GameMaster.Entity.playerList.ForEach(player =>
+		{
+			player.StartDevMode();
+		});
+
 		base.EnterState();
-
-
 	}
 }

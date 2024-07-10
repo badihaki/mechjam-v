@@ -39,8 +39,8 @@ public class EnemyInventory : MonoBehaviour
 
     private bool CanDropItem()
     {
-        int roll = UnityEngine.Random.Range(0, 10);
-        if (roll < 6) return true;
+        int roll = UnityEngine.Random.Range(0, 100);
+        if (roll <= 55) return true;
         else return false;
     }
 }

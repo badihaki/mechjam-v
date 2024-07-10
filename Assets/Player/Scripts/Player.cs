@@ -19,48 +19,54 @@ public class Player : MonoBehaviour, IDamageable
 	[field: SerializeField] public GameObject CharacterModel { get; private set; }
     [field:SerializeField] public Animator AnimationController {  get; private set; }
 
+    private bool playerReady = false;
+    
     // state machine below
     private PlayerFSM stateMachine;
 
     // dev mode
     [SerializeField] private bool devMode = false;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
     {
-        // PlayerSetup();
-        DontDestroyOnLoad(gameObject);
+        if (!playerReady)
+        {
+            // PlayerSetup();
+            DontDestroyOnLoad(gameObject);
         
-        // controls
-        Controls = GetComponent<PlayerControlsManager>();
+            // controls
+            Controls = GetComponent<PlayerControlsManager>();
 
-        // character model
-        CharacterModel = transform.Find("Char").gameObject;
-        CharacterModel.SetActive(false);
+            // character model
+            CharacterModel = transform.Find("Char").gameObject;
+            CharacterModel.SetActive(false);
 
-        // animation
-        AnimationController = CharacterModel.GetComponent<Animator>();
+            // animation
+            AnimationController = CharacterModel.GetComponent<Animator>();
 
-        // health
-        Health = transform.AddComponent<Health>();
-        Health.InitializeHealth(20);
-        Health.onHealthChange += DidEntityDie;
+            // health
+            Health = transform.AddComponent<Health>();
+            Health.InitializeHealth(20);
+            Health.onHealthChange += DidEntityDie;
         
-        // locomotion
-        LocomotionController = GetComponent<PlayerLocomotionController>();
-        LocomotionController.InitializeController(this);
-        LocomotionController.physicsController.useGravity = false;
-        LocomotionController.enabled = false;
+            // locomotion
+            LocomotionController = GetComponent<PlayerLocomotionController>();
+            LocomotionController.InitializeController(this);
+            LocomotionController.physicsController.useGravity = false;
+            LocomotionController.enabled = false;
 
-        // attack
-        AttackController = GetComponent<PlayerAttackController>();
-        AttackController.InitializeController(this);
-        AttackController.enabled = false;
+            // attack
+            AttackController = GetComponent<PlayerAttackController>();
+            AttackController.InitializeController(this);
+            AttackController.enabled = false;
 
-		// state machine
-		stateMachine = GetComponent<PlayerFSM>();
-        stateMachine.InitializeStateMachine(this);
-        if (devMode) StartDevMode();
+		    // state machine
+		    stateMachine = GetComponent<PlayerFSM>();
+            stateMachine.InitializeStateMachine(this);
+
+            playerReady = true;
+        }
+        // if (devMode || GameMaster.Entity.dev) StartDevMode();
     }
 
     public void PlayerSetup()
@@ -79,9 +85,9 @@ public class Player : MonoBehaviour, IDamageable
         else IsUsingKBMP = false;
     }
 
-    private void StartDevMode()
+    public void StartDevMode()
     {
-        print("GM is starting gameplay in ~DEV MODE~");
+        print("Player is starting gameplay in ~DEV MODE~");
         SetPID(1);
         SetControlType();
         StartPlayerGameplay();
@@ -89,6 +95,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void StartPlayerGameplay()
     {
+        print(LocomotionController);
 		LocomotionController.enabled = true;
 		LocomotionController.physicsController.useGravity = true;
         LocomotionController.GetNewCamera();

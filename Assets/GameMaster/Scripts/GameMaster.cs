@@ -78,7 +78,10 @@ public class GameMaster : MonoBehaviour
     public void BeginGameplay(FloorManager newFloor)
     {
         gameplayManager.SetFloor(newFloor);
-        if (dev) stateMachine.ChangeGameState(stateMachine.devState);
+        if (dev)
+        {
+            stateMachine.ChangeGameState(stateMachine.devState);
+        }
         else
         {
             stateMachine.ChangeGameState(stateMachine.gameplayState);
@@ -92,13 +95,6 @@ public class GameMaster : MonoBehaviour
 
 	public void SpawnPlayersInGameWorld()
     {
-        /*
-                foreach (PlayerContainer player in players)
-                {
-                    Transform spawn = GameObject.Find($"P{player.playerId}Spawn").transform;
-                    Player playerPrefab = Instantiate(player.playerGameplayPrefab, spawn.position, Quaternion.identity).GetComponent<Player>();
-                }
-        */
         for (int i = 0; i < playerList.Count; i++)
         {
             // Player player = Instantiate(playerList[i], spawn.position, Quaternion.identity);
