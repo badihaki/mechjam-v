@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 7893434464016237833}
   - component: {fileID: 1602178824798994066}
   - component: {fileID: 4102352830971263621}
-  - component: {fileID: 2881443415114776952}
   - component: {fileID: 8779861839852313876}
+  - component: {fileID: 2881443415114776952}
   - component: {fileID: 1304225418296942456}
   m_Layer: 0
   m_Name: Enemy
@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <health>k__BackingField: {fileID: 0}
+  healthRanges: {x: 3, y: 5}
   <target>k__BackingField: {fileID: 0}
   <stateMachine>k__BackingField: {fileID: 0}
 --- !u!54 &8599391827186290192
@@ -167,24 +168,6 @@ MonoBehaviour:
   <speed>k__BackingField: 4.75
   <dashSpeed>k__BackingField: 6.075
   <minAndMaxRange>k__BackingField: {x: 10.25, y: 13.557}
---- !u!114 &2881443415114776952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771751864557174826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96f10b7c6b3715747a8c8339b507c76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <gun>k__BackingField: {fileID: 11400000, guid: 6bb7d65458dd5b7428a6dfb15a9d6e8c, type: 2}
-  <isAttacking>k__BackingField: 0
-  waitToAttackTimer: 0
-  isAttackingTimer: 0
-  attackFireRate: 0
-  shootPoint: {fileID: 1999913932587428536}
 --- !u!195 &8779861839852313876
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -207,6 +190,24 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2881443415114776952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771751864557174826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f10b7c6b3715747a8c8339b507c76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <gun>k__BackingField: {fileID: 11400000, guid: 6bb7d65458dd5b7428a6dfb15a9d6e8c, type: 2}
+  <isAttacking>k__BackingField: 0
+  waitToAttackTimer: 0
+  isAttackingTimer: 0
+  attackFireRate: 0
+  shootPoint: {fileID: 1999913932587428536}
 --- !u!114 &1304225418296942456
 MonoBehaviour:
   m_ObjectHideFlags: 0

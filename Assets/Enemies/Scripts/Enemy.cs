@@ -8,6 +8,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     [field: SerializeField] public Health health { get; private set; }
+    [SerializeField] private Vector2 healthRanges;
     [field: SerializeField] public Transform target { get; private set; }
     public EnemyLocomotionController locomotionController { get; private set; }
     public EnemyAttackController attackController { get; private set; }
@@ -18,14 +19,16 @@ public class Enemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        InitializeEntity(new Vector2(5, 12));
+        int healthMin = (int)MathF.Round(healthRanges.x);
+        int healthMax = (int)MathF.Round(healthRanges.y);
+        InitializeEntity(healthMin, healthMax);
     }
 
-    private void InitializeEntity(Vector2 healthRange)
+    private void InitializeEntity(int min, int max)
     {
         // health
         health = transform.AddComponent<Health>();
-        int healthValue = (int)Mathf.Round(UnityEngine.Random.Range(healthRange.x, healthRange.y));
+        int healthValue = UnityEngine.Random.Range(min, max);
         health.InitializeHealth(healthValue);
         health.onHealthChange += DidEntityDie;
 
