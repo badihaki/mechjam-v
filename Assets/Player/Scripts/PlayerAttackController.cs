@@ -57,6 +57,12 @@ public class PlayerAttackController : MonoBehaviour
         StartCoroutine(SelectGunStyle());
     }
 
+	public void GetMoreAmmoStocks(int newAmmoStock)
+	{
+		ammoStock += newAmmoStock;
+		onStockChanged(ammoStock);
+	}
+
     private void SwitchGunObject()
 	{
 		if (rightWeapon)
