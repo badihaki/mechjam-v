@@ -17,7 +17,7 @@ public class GameplayState : GameState
 		base.EnterState();
 
 		GameMaster.Entity.SpawnPlayersInGameWorld();
-		GameMaster.Entity.gameplayManager.SetWaves(UnityEngine.Random.Range(1, 5));
+		GameMaster.Entity.gameplayManager.SetWaves(UnityEngine.Random.Range(2, 8));
 		gameplayStartTimer = UnityEngine.Random.Range(1.0f, 3.0f);
 		startGameplay = false;
 	}
