@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4102352830971263621}
   - component: {fileID: 2881443415114776952}
   - component: {fileID: 8779861839852313876}
+  - component: {fileID: 1304225418296942456}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: UnityEngine.Random.Range(healthRange.x, healthRange.y)
@@ -206,6 +207,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1304225418296942456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771751864557174826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 422f37437b977ef44bf39da3e587522e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 3965667922850118915, guid: a2dd175d6be7b1541a69bf95e7ba4be5, type: 3}
 --- !u!1 &5174396886980406617
 GameObject:
   m_ObjectHideFlags: 0

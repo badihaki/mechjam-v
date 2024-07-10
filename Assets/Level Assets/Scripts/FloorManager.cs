@@ -32,7 +32,7 @@ public class FloorManager : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        int numberToSpawn = UnityEngine.Random.Range(0, currentEnvironment.enemySpawnPositions.Count - 1);
+        int numberToSpawn = UnityEngine.Random.Range(1, currentEnvironment.enemySpawnPositions.Count - 1);
         print($"spawning {numberToSpawn} enemies");
         for (int i = 0; i < numberToSpawn; i++)
         {
