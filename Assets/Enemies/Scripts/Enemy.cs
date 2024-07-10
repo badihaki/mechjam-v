@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if(health <= 0)
         {
             print("entity died");
+            GameMaster.Entity.gameplayManager.KillEnemy();
             Destroy(gameObject);
         }
     }

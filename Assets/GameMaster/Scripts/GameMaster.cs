@@ -11,9 +11,9 @@ public class GameMaster : MonoBehaviour
     [field: SerializeField] public Vector3 gravity { get; private set; } = Physics.gravity;
     [field: SerializeField] public List<Player> playerList = new List<Player>();
     [field: SerializeField] public bool twoPlayerMode { get; private set; } = false;
-    public GMFiniteStateMachine stateMachine { get; private set; }
     [field: SerializeField] public bool dev { get; private set; } = false;
-    [field: SerializeField] public FloorManager currentFloor { get; private set; }
+    public GMFiniteStateMachine stateMachine { get; private set; }
+    public GameplayManager gameplayManager { get; private set; }
 
     private void Awake()
     {
@@ -45,6 +45,7 @@ public class GameMaster : MonoBehaviour
 
     private void InitializeGame()
     {
+        gameplayManager = GetComponent<GameplayManager>();
         stateMachine = GetComponent<GMFiniteStateMachine>();
         stateMachine.InitializeGameStateMachine();
     }
@@ -76,6 +77,7 @@ public class GameMaster : MonoBehaviour
 
     public void BeginGameplay(FloorManager newFloor)
     {
+        gameplayManager.SetFloor(newFloor);
         if (dev) stateMachine.ChangeGameState(stateMachine.devState);
         else
         {

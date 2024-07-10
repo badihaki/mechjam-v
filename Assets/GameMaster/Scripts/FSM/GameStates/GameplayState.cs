@@ -9,25 +9,32 @@ public class GameplayState : GameState
 	{
 	}
 
-	private bool startArena = false;
+	private bool startGameplay = false;
+	private float gameplayStartTimer;
 
 	public override void EnterState()
 	{
 		base.EnterState();
 
 		GameMaster.Entity.SpawnPlayersInGameWorld();
+		GameMaster.Entity.gameplayManager.SetWaves(UnityEngine.Random.Range(1, 5));
+		gameplayStartTimer = UnityEngine.Random.Range(1.0f, 3.0f);
+		startGameplay = false;
 	}
 
 	public override void UpdateGameLogic()
 	{
 		base.UpdateGameLogic();
-/*
-		if (Time.time >= stateStartTime + 0.5f && startArena == false)
+
+		if(!startGameplay)
 		{
-			Debug.Log("spawning players");
-			startArena = true;
-			GameMaster.Entity.SpawnPlayersInGameWorld();
+			gameplayStartTimer -= Time.deltaTime;
+			if(gameplayStartTimer < 0.0f )
+			{
+				startGameplay = true;
+				gameplayStartTimer = 0.0f;
+				GameMaster.Entity.gameplayManager.StartNewWave();
+			}
 		}
-*/
 	}
 }

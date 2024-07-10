@@ -76,10 +76,7 @@ public class PlayerAttackController : MonoBehaviour
         switch (gun.gunStyle)
         {
             case GunStyle.oneHand:
-				print($"gun style is switched to {gun.gunStyle}");
                 player.AnimationController.SetBool("1H", true); // oneHand
-                // player.AnimationController.SetBool("oneHand", true); // oneHand
-                player.AnimationController.SetBool("freefall", true); // oneHand
                 player.AnimationController.SetBool("2H", false);
                 player.AnimationController.SetBool("dual", false);
                 break;
