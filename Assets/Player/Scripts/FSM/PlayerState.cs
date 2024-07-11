@@ -25,10 +25,12 @@ public class PlayerState
     {
         stateStartTime = Time.time;
         isExitingState = false;
+        player.AnimationController.SetBool(animationBoolName, true);
     }
     public virtual void Exit()
     {
         isExitingState = true;
+        player.AnimationController.SetBool(animationBoolName, false);
     }
     #endregion
 

@@ -12,6 +12,7 @@ public class PlayerLocomotionController : MonoBehaviour
     [SerializeField] private Vector3 rotationTarget;
     [SerializeField] private float rotationSpeed = 0.25f;
     private WaitForSeconds dashRefreshTime; // how much time before you can dash again
+    private WaitForSeconds dashWait = new WaitForSeconds(0.15f);
     [SerializeField] private float timeToDash = 0.15f;
     [SerializeField] private float dashTimer = 0.0f;
     [SerializeField] private bool dashAvailable = true;
@@ -111,11 +112,15 @@ public class PlayerLocomotionController : MonoBehaviour
         physicsController.velocity = movement * speed;
     }
 
-    public void CanBoostDash()
+    public void SetCanDash(bool canDash) => dashAvailable = canDash;
+
+    public void CanDashBoost()
     {
         if (dashAvailable && player.Controls.dashInput)
         {
-            StartCoroutine(BoostDash());
+            player.AnimationController.SetBool("dash", true);
+            StartCoroutine(ResetDashBool());
+            StartCoroutine(DashBoost());
             StartCoroutine(ResetDash());
         }
     }
@@ -135,14 +140,23 @@ public class PlayerLocomotionController : MonoBehaviour
             dashAvailable = true;
         }
     */
-    private IEnumerator BoostDash()
+    private IEnumerator ResetDashBool()
     {
-        // turn off ability to dash while we dashin'
+        yield return dashWait;
+
+        player.AnimationController.SetBool("dash", false);
+    }
+    private IEnumerator DashBoost()
+    {
+        // turn off ability to dash, move and shoot while we dashin'
         movementEnabled = false;
         dashTimer += timeToDash;
-        
+        player.AttackController.SetCanMelee(false);
+        player.AttackController.SetCanShoot(false);
+
         // get direction of dash
         Vector3 movement = new Vector3(player.Controls.moveInput.x, 0.0f, player.Controls.moveInput.y);
+        transform.LookAt(movement);
         if (movement == Vector3.zero) movement = transform.forward;
 
         // apply direction and dashForce to physicsController's velocity
@@ -153,7 +167,9 @@ public class PlayerLocomotionController : MonoBehaviour
             yield return null;
         }
 
-        // turn back on ability to dash
+        // turn back on ability to dash, melee and shoot
+        player.AttackController.SetCanMelee(true);
+        player.AttackController.SetCanShoot(true);
         physicsController.velocity = Vector3.zero;
         movementEnabled = true;
     }

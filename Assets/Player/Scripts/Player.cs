@@ -18,6 +18,7 @@ public class Player : MonoBehaviour, IDamageable
 	[field: SerializeField] public PlayerUIController UIController { get; private set; }
 	[field: SerializeField] public GameObject CharacterModel { get; private set; }
     [field:SerializeField] public Animator AnimationController {  get; private set; }
+    private WaitForSeconds hurtAnimTime = new WaitForSeconds(0.35f);
 
     private bool playerReady = false;
     
@@ -136,5 +137,15 @@ public class Player : MonoBehaviour, IDamageable
     {
         print($"player({PlayerID}) was damaged by {entity.name}");
         Health.ChangeHealth(Health.currentHealth - damage);
+        StartCoroutine(HurtEntity());
+    }
+
+    private IEnumerator HurtEntity()
+    {
+        stateMachine.ChangeState(stateMachine.hurtState);
+        
+        yield return hurtAnimTime;
+        
+        stateMachine.ChangeState(stateMachine.gameplayState);
     }
 }

@@ -10,9 +10,11 @@ public class PlayerAttackController : MonoBehaviour
 	[field: SerializeField] public int currentAmmo { get; private set; }
 	[field: SerializeField] public int ammoStock { get; private set; }
 	[SerializeField] private float fireRateTimer = 0;
-	[SerializeField] private bool canMeelee = true;
-	[SerializeField] private float meleeRechargeTime = 1.2f;
-	[SerializeField] private bool isReloading = false;
+	[SerializeField] private bool playerCanMeleeAtk = true;
+	[SerializeField] private bool playerCanShoot = true;
+	[SerializeField] private WaitForSeconds meleeRechargeTime = new WaitForSeconds(0.85f);
+	[SerializeField] private WaitForSeconds meleeWait = new WaitForSeconds(0.15f);
+    [SerializeField] private bool isReloading = false;
 	[SerializeField] private Transform shootPoint;
 	private bool isShooting = false;
 
@@ -89,12 +91,18 @@ public class PlayerAttackController : MonoBehaviour
         }
     }
 
+	public void SetCanShoot(bool canPlayerShoot) => playerCanShoot = canPlayerShoot;
+	public void SetCanMelee(bool canPlayerMelee) => playerCanMeleeAtk = canPlayerMelee;
+
     public void CanShoot()
 	{
-		if (gun && player.Controls.shootInput)
+		if (playerCanShoot)
 		{
-			if (currentAmmo > 0 && fireRateTimer <= 0) Shoot();
-			else isShooting = false;
+			if (gun && player.Controls.shootInput)
+			{
+				if (currentAmmo > 0 && fireRateTimer <= 0) Shoot();
+				else isShooting = false;
+			}
 		}
 	}
 
@@ -113,13 +121,15 @@ public class PlayerAttackController : MonoBehaviour
 	{
 		if (player.Controls.meleeInput)
 		{
-			if (canMeelee)
+			if (playerCanMeleeAtk)
 			{
 				print("melee-ing");
-				canMeelee = false;
+				player.AnimationController.SetBool("melee", true);
+				playerCanMeleeAtk = false;
 				player.Controls.UseMelee();
+				StartCoroutine(ResetMelee());
 				StartCoroutine(MeleeRecharge());
-			}
+            }
 		}
 	}
 
@@ -146,9 +156,17 @@ public class PlayerAttackController : MonoBehaviour
 		isReloading = false;
 	}
 
-	private IEnumerator MeleeRecharge()
+	private IEnumerator ResetMelee()
 	{
-		yield return new WaitForSeconds(meleeRechargeTime);
-		canMeelee = true;
+		yield return meleeWait;
+		player.AnimationController.SetBool("melee", false);
+	}
+
+    private IEnumerator MeleeRecharge()
+	{
+		player.LocomotionController.SetCanDash(false);
+        yield return meleeRechargeTime;
+        player.LocomotionController.SetCanDash(true);
+		playerCanMeleeAtk = true;
 	}
 }

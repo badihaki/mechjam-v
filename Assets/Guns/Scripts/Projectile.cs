@@ -13,6 +13,10 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Vector2 forces;
     [SerializeField] private GameObject impactVfx;
 
+    private bool reflected = false;
+    private bool reversed = false;
+    private  WaitForSeconds reversedWait = new WaitForSeconds(0.35f);
+
     public void InitializeProjectile(Transform creator, int dmg)
     {
         physicsController = transform.AddComponent<Rigidbody>();
@@ -31,13 +35,26 @@ public class Projectile : MonoBehaviour
 	{
         if (physicsController != null)
         {
-            physicsController.velocity = transform.forward * speed;
+            if (!reflected)
+            {
+                physicsController.velocity = transform.forward * speed;
+            }
+            if (reversed)
+            {
+                physicsController.velocity = transform.forward * -speed;
+            }
         }
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform != controllingEntity)
+        if (other.GetComponent<Projectile>()) return;
+        if (other.GetComponent<PlayerSword>())
+        {
+            ReflectProj();
+            return;
+        }
+        if (other.transform != controllingEntity && !reversed)
         {
             other.GetComponent<IDamageable>()?.Damage(transform, damage, forces);
             if (impactVfx)
@@ -45,8 +62,31 @@ public class Projectile : MonoBehaviour
                 Instantiate(impactVfx, transform.position, Quaternion.identity);
             }
             else print("didn't instantiate impact");
-            Destroy(gameObject);
-            
+                Destroy(gameObject);
         }
+        else if (reversed && !other.GetComponent<Player>())
+        {
+            other.GetComponent<IDamageable>()?.Damage(transform, damage, forces);
+            if (impactVfx)
+            {
+                Instantiate(impactVfx, transform.position, Quaternion.identity);
+            }
+            Destroy(gameObject);
+        }
+    }
+
+    private void ReflectProj()
+    {
+        print("reflected!!");
+        reflected = true;
+        physicsController.velocity = Vector3.zero;
+        StartCoroutine(BeginReversedTravel());
+    }
+
+    private IEnumerator BeginReversedTravel()
+    {
+        yield return reversedWait;
+        speed *= 2;
+        reversed = true;
     }
 }

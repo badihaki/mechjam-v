@@ -9,6 +9,7 @@ public class ENVManager : MonoBehaviour
      */
     [field: SerializeField] public List<Enemy> enemyList { get; private set; }
     [field: SerializeField] public List<EnemySpawn> enemySpawnPositions { get; private set; }
+    [field: SerializeField] public List<ENVManager> nextPossibleEnvironments { get; private set; }
 
 	// Start is called before the first frame update
 	void Start()
