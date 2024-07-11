@@ -125,21 +125,8 @@ public class PlayerLocomotionController : MonoBehaviour
         }
     }
 
-    /*
-        private IEnumerator BoostDash()
-        {
-            print("boost dashing");
-            dashAvailable = false;
-            player.controls.UseDash();
-            Vector3 movement = new Vector3(player.controls.moveInput.x, 0.0f, player.controls.moveInput.y);
-            if (movement == Vector3.zero) movement = transform.forward;
-            // physicsController.AddForce(movement * dashForce, ForceMode.Impulse);
-            physicsController.velocity = movement * dashForce;
-            yield return new WaitForSeconds(dashRefreshTime);
-            physicsController.velocity = Vector3.zero;
-            dashAvailable = true;
-        }
-    */
+    public void ZeroOutVelocity() => physicsController.velocity = Vector3.zero;
+
     private IEnumerator ResetDashBool()
     {
         yield return dashWait;

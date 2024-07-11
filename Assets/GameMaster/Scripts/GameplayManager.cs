@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,10 @@ public class GameplayManager : MonoBehaviour
             {
                 StartCoroutine(SetUpNewWave());
             }
+        }
+        else
+        {
+            currentFloor.CompleteBoard();
         }
     }
 

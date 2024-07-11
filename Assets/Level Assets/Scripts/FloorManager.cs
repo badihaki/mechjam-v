@@ -8,6 +8,8 @@ public class FloorManager : MonoBehaviour
 {
     [field: SerializeField] public ENVManager startingEnvironment { get; private set; }
     [field: SerializeField] public ENVManager currentEnvironment { get; private set; }
+    [field: SerializeField] public int numberOfEnvironments { get; private set; }
+    [field: SerializeField] public List<ENVManager> nextPossibleEnvironments { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,7 @@ public class FloorManager : MonoBehaviour
         currentEnvironment = startingEnvironment;
         GameMaster.Entity.BeginGameplay(this);
         SetUpCam();
+        numberOfEnvironments = UnityEngine.Random.Range(3, 6);
     }
 
     private static void SetUpCam()
@@ -53,5 +56,29 @@ public class FloorManager : MonoBehaviour
             if (!spawn.isOccupied) spawnPoints.Add(spawn);
         });
         return spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count - 1)];
+    }
+
+    public void CompleteBoard()
+    {
+        if (numberOfEnvironments > 0)
+        {
+            // put all players into cinematic state
+            // open the dorr for the current environment
+            // activate the continue arrow
+        }
+    }
+
+    public void GoToNextEnvironment()
+    {
+        // instantiate the next environment
+        int envIndex = UnityEngine.Random.Range(0, nextPossibleEnvironments.Count - 1);
+        Vector3 envSpawnPos = new Vector3(transform.position.x, transform.position.y, transform.position.x + 125.0f);
+        ENVManager nextEnvironment = Instantiate(nextPossibleEnvironments[envIndex].gameObject, envSpawnPos, Quaternion.identity).GetComponent<ENVManager>();
+        // start fade anim
+        // load new environment
+        // delete old environment
+        // make new environment the current environment
+        // put player in starting zone for next environment
+
     }
 }
