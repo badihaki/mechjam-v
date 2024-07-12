@@ -62,10 +62,17 @@ public class FloorManager : MonoBehaviour
     {
         if (numberOfEnvironments > 0)
         {
-            // put all players into cinematic state
-            // open the dorr for the current environment
-            // activate the continue arrow
+            numberOfEnvironments--;
+            currentEnvironment.FinishBoard();
         }
+    }
+
+    public void GoToNextBoard()
+    {
+            GameMaster.Entity.playerList.ForEach(player =>
+            {
+                player.EnterCinematic();
+            });
     }
 
     public void GoToNextEnvironment()
@@ -76,9 +83,10 @@ public class FloorManager : MonoBehaviour
         ENVManager nextEnvironment = Instantiate(nextPossibleEnvironments[envIndex].gameObject, envSpawnPos, Quaternion.identity).GetComponent<ENVManager>();
         // start fade anim
         // load new environment
-        // delete old environment
         // make new environment the current environment
         // put player in starting zone for next environment
+        // delete old environment
+        // complete fade
 
     }
 }

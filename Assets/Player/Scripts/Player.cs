@@ -94,6 +94,9 @@ public class Player : MonoBehaviour, IDamageable
         StartPlayerGameplay();
     }
 
+    public void EnterCinematic() => stateMachine.ChangeState(stateMachine.cinematicState);
+    public void ExitCinematic() => stateMachine.ChangeState(stateMachine.gameplayState);
+
     public void StartPlayerGameplay()
     {
         print(LocomotionController);

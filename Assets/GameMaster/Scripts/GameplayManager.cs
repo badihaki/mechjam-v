@@ -38,10 +38,10 @@ public class GameplayManager : MonoBehaviour
             {
                 StartCoroutine(SetUpNewWave());
             }
-        }
-        else
-        {
-            currentFloor.CompleteBoard();
+            else
+            {
+                currentFloor.CompleteBoard();
+            }
         }
     }
 

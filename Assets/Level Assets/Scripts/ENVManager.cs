@@ -10,11 +10,19 @@ public class ENVManager : MonoBehaviour
     [field: SerializeField] public List<Enemy> enemyList { get; private set; }
     [field: SerializeField] public List<EnemySpawn> enemySpawnPositions { get; private set; }
     private Animator animationController;
+    [SerializeField] private GameObject goGoArrow;
+    [SerializeField] private Transform continueArrow;
+    [field: SerializeField] public Transform p1Start { get; private set; }
+    [field: SerializeField] public Transform p2Start { get; private set; }
 
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        animationController = GetComponent<Animator>();        
+        animationController = GetComponent<Animator>();
+        continueArrow = transform.Find("arrow");
+        continueArrow.gameObject.SetActive(false);
+        p1Start = transform.Find("P1");
+        p2Start = transform.Find("P2");
     }
 
     // Update is called once per frame
@@ -25,6 +33,7 @@ public class ENVManager : MonoBehaviour
 
     public void FinishBoard()
     {
+        continueArrow.gameObject.SetActive(true);
         animationController.SetBool("doorOpened", true);
     }
 }
