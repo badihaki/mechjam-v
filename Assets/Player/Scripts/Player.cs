@@ -99,7 +99,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public void StartPlayerGameplay()
     {
-        print(LocomotionController);
 		LocomotionController.enabled = true;
 		LocomotionController.physicsController.useGravity = true;
         LocomotionController.GetNewCamera();

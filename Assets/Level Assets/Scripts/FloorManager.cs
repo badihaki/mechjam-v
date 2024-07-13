@@ -12,14 +12,21 @@ public class FloorManager : MonoBehaviour
     [field: SerializeField] public int numberOfEnvironments { get; private set; }
     [field: SerializeField] public List<ENVManager> nextPossibleEnvironments { get; private set; }
     private WaitForSeconds envLoadWait = new WaitForSeconds(3.25f);
+    private bool ready = false;
 
     // Start is called before the first frame update
     void Start()
+    {
+        if (!ready) BuildFloor();
+    }
+
+    public void BuildFloor()
     {
         currentEnvironment = startingEnvironment;
         GameMaster.Entity.BeginGameplay(this);
         SetUpCam();
         numberOfEnvironments = UnityEngine.Random.Range(3, 6);
+        ready = true;
     }
 
     private static void SetUpCam()
@@ -79,13 +86,14 @@ public class FloorManager : MonoBehaviour
     {
         int envIndex = UnityEngine.Random.Range(0, nextPossibleEnvironments.Count - 1);
         Vector3 envSpawnPos = new Vector3(transform.position.x, transform.position.y, transform.position.x + 125.0f);
-        print("loading next env");
         
         yield return envLoadWait;
         
         Destroy(currentEnvironment.gameObject);
         // make new environment the current environment
-        currentEnvironment = Instantiate(nextPossibleEnvironments[envIndex].gameObject, envSpawnPos, Quaternion.identity).GetComponent<ENVManager>();
+        // currentEnvironment = Instantiate(nextPossibleEnvironments[envIndex].gameObject, envSpawnPos, Quaternion.identity).GetComponent<ENVManager>();
+        currentEnvironment = Instantiate(nextPossibleEnvironments[envIndex].gameObject, transform.position, Quaternion.identity).GetComponent<ENVManager>();
+        currentEnvironment.BuildEnv();
         // put player in starting zone for next environment
         GameMaster.Entity.playerList.ForEach(player =>
         {
@@ -101,7 +109,6 @@ public class FloorManager : MonoBehaviour
 
     private IEnumerator TriggerEndLoad()
     {
-        print("End the loading");
         yield return envLoadWait;
         StartCoroutine(GameMaster.Entity.EndLoading());
     }

@@ -11,6 +11,7 @@ public class GMFiniteStateMachine : MonoBehaviour
     // states
     public GameStartState gameStartState { get; private set; }
     public GameplayState gameplayState { get; private set; }
+    public GameLoadingState loadingState { get; private set; }
     public DevState devState { get; private set; }
 
     // Start is called before the first frame update
@@ -38,6 +39,7 @@ public class GMFiniteStateMachine : MonoBehaviour
         // start state machine
         gameStartState = new GameStartState(this, "Start ");
         gameplayState = new GameplayState(this, "Gameplay");
+        loadingState = new GameLoadingState(this, "loading");
         devState = new DevState(this, "Dev");
 
         currentGameState = gameStartState;

@@ -14,15 +14,22 @@ public class ENVManager : MonoBehaviour
     [SerializeField] private Transform continueArrow;
     [field: SerializeField] public Transform p1Start { get; private set; }
     [field: SerializeField] public Transform p2Start { get; private set; }
+    private bool ready = false;
 
     // Start is called before the first frame update
     void Start()
+    {
+        if (!ready) BuildEnv();
+    }
+
+    public void BuildEnv()
     {
         animationController = GetComponent<Animator>();
         continueArrow = transform.Find("Arrow");
         continueArrow.gameObject.SetActive(false);
         p1Start = transform.Find("P1Start");
         p2Start = transform.Find("P2Start");
+        ready = true;
     }
 
     // Update is called once per frame

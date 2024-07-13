@@ -12,6 +12,7 @@ public class GameMaster : MonoBehaviour
     [field: SerializeField] public List<Player> playerList = new List<Player>();
     [field: SerializeField] public bool twoPlayerMode { get; private set; } = false;
     [field: SerializeField] public bool dev { get; private set; } = false;
+    [field: SerializeField] public bool gameStarted { get; private set; } = false;
     public GMFiniteStateMachine stateMachine { get; private set; }
     public GameplayManager gameplayManager { get; private set; }
     private Transform canvas;
@@ -49,6 +50,7 @@ public class GameMaster : MonoBehaviour
     public void StartLoading()
     {
         canvas.gameObject.SetActive(true);
+        stateMachine.ChangeGameState(stateMachine.loadingState);
         animationController.SetBool("loading", true);
     }
 
@@ -57,6 +59,13 @@ public class GameMaster : MonoBehaviour
         animationController.SetBool("loading", false);
         yield return endLoadWaitTime;
         canvas.gameObject.SetActive(false);
+        playerList.ForEach(player =>
+        {
+            player.ExitCinematic();
+        });
+
+        // gameplayManager.SetWaves(UnityEngine.Random.Range(2, 4));
+        stateMachine.ChangeGameState(stateMachine.gameplayState);
     }
 
     private void InitializeGame()
@@ -74,14 +83,6 @@ public class GameMaster : MonoBehaviour
     {
 
     }
-
-/*
-    public void OnPlayerJoined(PlayerInput playerInput)
-    {
-        Player player = playerInput.GetComponent<Player>();
-        player.PlayerSetup();
-    }
-*/
 
     public void StartGame(bool twoPlayer)
     {
@@ -114,14 +115,18 @@ public class GameMaster : MonoBehaviour
 
 	public void SpawnPlayersInGameWorld()
     {
-        for (int i = 0; i < playerList.Count; i++)
+        if (!gameStarted)
         {
-            // Player player = Instantiate(playerList[i], spawn.position, Quaternion.identity);
-            print($"try to find spawn with id of {playerList[i].PlayerID}");
-			Transform spawn = GameObject.Find($"P{playerList[i].PlayerID}Spawn").transform;
-			Player player = playerList[i];
-            player.transform.position = spawn.position;
-            player.StartPlayerGameplay();
-		}
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                // Player player = Instantiate(playerList[i], spawn.position, Quaternion.identity);
+                print($"try to find spawn with id of {playerList[i].PlayerID}");
+			    Transform spawn = GameObject.Find($"P{playerList[i].PlayerID}Spawn").transform;
+			    Player player = playerList[i];
+                player.transform.position = spawn.position;
+                player.StartPlayerGameplay();
+		    }
+            gameStarted = true;
+        }
     }
 }

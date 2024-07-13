@@ -129,7 +129,6 @@ GameObject:
   - component: {fileID: 264599148617629604}
   - component: {fileID: 4212361376355637693}
   - component: {fileID: 7841615672001529225}
-  - component: {fileID: 2463174372876766403}
   m_Layer: 0
   m_Name: pillar (1)
   m_TagString: Untagged
@@ -218,33 +217,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &2463174372876766403
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2604030768309008288}
-  serializedVersion: 4
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &3546568437358186559
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +229,6 @@ GameObject:
   - component: {fileID: 996414879892473120}
   - component: {fileID: 3041914660077400554}
   - component: {fileID: 4305061479790517356}
-  - component: {fileID: 5812452658450039979}
   m_Layer: 0
   m_Name: pillar
   m_TagString: Untagged
@@ -346,33 +317,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!54 &5812452658450039979
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3546568437358186559}
-  serializedVersion: 4
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &3739365487149491139
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +328,7 @@ GameObject:
   - component: {fileID: 2057907196524792919}
   - component: {fileID: 3552330553510014080}
   - component: {fileID: 3215243001370341767}
+  - component: {fileID: 6117946003921190393}
   m_Layer: 0
   m_Name: ENV 3
   m_TagString: Untagged
@@ -462,6 +407,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &6117946003921190393
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739365487149491139}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 82.32, y: 0.2, z: 80.06}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4114457593633851348
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,8 +908,8 @@ Transform:
   m_GameObject: {fileID: 7914505927058349107}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 4, z: -36.8}
-  m_LocalScale: {x: 1, y: 10.06, z: 135.14626}
+  m_LocalPosition: {x: 0, y: 0.85, z: -36.8}
+  m_LocalScale: {x: 1, y: 3, z: 135.14626}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8171912670096314529}

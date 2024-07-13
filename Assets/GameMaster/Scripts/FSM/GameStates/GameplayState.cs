@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
@@ -17,8 +18,9 @@ public class GameplayState : GameState
 		base.EnterState();
 
 		GameMaster.Entity.SpawnPlayersInGameWorld();
-		// GameMaster.Entity.gameplayManager.SetWaves(UnityEngine.Random.Range(2, 4));
-        GameMaster.Entity.gameplayManager.SetWaves(1);
+		GameMaster.Entity.gameplayManager.SetWaves(UnityEngine.Random.Range(2, 4));
+        // GameMaster.Entity.gameplayManager.SetWaves(1);
+		// Debug.Log("1 wave for debug");
 		gameplayStartTimer = UnityEngine.Random.Range(1.0f, 3.0f);
 		startGameplay = false;
 	}
