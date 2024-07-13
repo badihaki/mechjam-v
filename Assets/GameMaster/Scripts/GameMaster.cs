@@ -14,6 +14,9 @@ public class GameMaster : MonoBehaviour
     [field: SerializeField] public bool dev { get; private set; } = false;
     public GMFiniteStateMachine stateMachine { get; private set; }
     public GameplayManager gameplayManager { get; private set; }
+    private Transform canvas;
+    private Animator animationController;
+    private WaitForSeconds endLoadWaitTime = new WaitForSeconds(2.57f);
 
     private void Awake()
     {
@@ -43,9 +46,25 @@ public class GameMaster : MonoBehaviour
 
     }
 
+    public void StartLoading()
+    {
+        canvas.gameObject.SetActive(true);
+        animationController.SetBool("loading", true);
+    }
+
+    public IEnumerator EndLoading()
+    {
+        animationController.SetBool("loading", false);
+        yield return endLoadWaitTime;
+        canvas.gameObject.SetActive(false);
+    }
+
     private void InitializeGame()
     {
         gameplayManager = GetComponent<GameplayManager>();
+        canvas = transform.Find("Canvas");
+        canvas.gameObject.SetActive(false);
+        animationController = GetComponent<Animator>();
         stateMachine = GetComponent<GMFiniteStateMachine>();
         stateMachine.InitializeGameStateMachine();
     }

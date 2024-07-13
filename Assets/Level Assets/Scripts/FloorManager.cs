@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class FloorManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class FloorManager : MonoBehaviour
     [field: SerializeField] public ENVManager currentEnvironment { get; private set; }
     [field: SerializeField] public int numberOfEnvironments { get; private set; }
     [field: SerializeField] public List<ENVManager> nextPossibleEnvironments { get; private set; }
+    private WaitForSeconds envLoadWait = new WaitForSeconds(3.25f);
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,7 @@ public class FloorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SpawnEnemies()
@@ -67,26 +69,40 @@ public class FloorManager : MonoBehaviour
         }
     }
 
-    public void GoToNextBoard()
-    {
-            GameMaster.Entity.playerList.ForEach(player =>
-            {
-                player.EnterCinematic();
-            });
-    }
-
     public void GoToNextEnvironment()
     {
-        // instantiate the next environment
+        GameMaster.Entity.StartLoading();
+        StartCoroutine(LoadNextEnv());
+    }
+
+    private IEnumerator LoadNextEnv()
+    {
         int envIndex = UnityEngine.Random.Range(0, nextPossibleEnvironments.Count - 1);
         Vector3 envSpawnPos = new Vector3(transform.position.x, transform.position.y, transform.position.x + 125.0f);
-        ENVManager nextEnvironment = Instantiate(nextPossibleEnvironments[envIndex].gameObject, envSpawnPos, Quaternion.identity).GetComponent<ENVManager>();
-        // start fade anim
-        // load new environment
+        print("loading next env");
+        
+        yield return envLoadWait;
+        
+        Destroy(currentEnvironment.gameObject);
         // make new environment the current environment
+        currentEnvironment = Instantiate(nextPossibleEnvironments[envIndex].gameObject, envSpawnPos, Quaternion.identity).GetComponent<ENVManager>();
         // put player in starting zone for next environment
-        // delete old environment
-        // complete fade
+        GameMaster.Entity.playerList.ForEach(player =>
+        {
+            if (player.PlayerID == 1)
+                player.transform.position = currentEnvironment.p1Start.position;
+            else if (player.PlayerID == 2)
+                player.transform.position = currentEnvironment.p2Start.position;
+        });
 
+        // complete fade
+        StartCoroutine(TriggerEndLoad());
+    }
+
+    private IEnumerator TriggerEndLoad()
+    {
+        print("End the loading");
+        yield return envLoadWait;
+        StartCoroutine(GameMaster.Entity.EndLoading());
     }
 }

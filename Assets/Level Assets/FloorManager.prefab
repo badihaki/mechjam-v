@@ -44,4 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aaa7c5b1bed5a541abceefb8734d782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <startingEnvironment>k__BackingField: {fileID: 0}
   <currentEnvironment>k__BackingField: {fileID: 0}
+  <numberOfEnvironments>k__BackingField: 0
+  <nextPossibleEnvironments>k__BackingField:
+  - {fileID: 3552330553510014080, guid: ad4008d9c5db68747b103a761a2c9b1e, type: 3}
+  - {fileID: 3552330553510014080, guid: dd6950fade2efc045a7c8eebf33db662, type: 3}
+  - {fileID: 3552330553510014080, guid: 69808f01c273af548b2f11c666a98894, type: 3}

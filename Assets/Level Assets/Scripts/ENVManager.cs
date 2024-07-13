@@ -19,10 +19,10 @@ public class ENVManager : MonoBehaviour
     void Start()
     {
         animationController = GetComponent<Animator>();
-        continueArrow = transform.Find("arrow");
+        continueArrow = transform.Find("Arrow");
         continueArrow.gameObject.SetActive(false);
-        p1Start = transform.Find("P1");
-        p2Start = transform.Find("P2");
+        p1Start = transform.Find("P1Start");
+        p2Start = transform.Find("P2Start");
     }
 
     // Update is called once per frame
