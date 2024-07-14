@@ -17,7 +17,7 @@ public class GameMaster : MonoBehaviour
     public GameplayManager gameplayManager { get; private set; }
     private Transform canvas;
     private Animator animationController;
-    private WaitForSeconds endLoadWaitTime = new WaitForSeconds(2.57f);
+    private WaitForSeconds endLoadWaitTime = new WaitForSeconds(1.57f);
 
     private void Awake()
     {
@@ -49,9 +49,15 @@ public class GameMaster : MonoBehaviour
 
     public void StartLoading()
     {
-        canvas.gameObject.SetActive(true);
-        if (!twoPlayerMode)
-            canvas.transform.Find("P2Container").gameObject.SetActive(false);
+		GameMaster.Entity.playerList.ForEach(player =>
+		{
+			// Console.WriteLine("entering cinematic");
+			print("entering cinematic");
+			player.EnterCinematic();
+		});
+		canvas.gameObject.SetActive(true);
+        // if (!twoPlayerMode)
+        //     canvas.transform.Find("P2Container").gameObject.SetActive(false);
         stateMachine.ChangeGameState(stateMachine.loadingState);
         animationController.SetBool("loading", true);
     }
@@ -59,14 +65,16 @@ public class GameMaster : MonoBehaviour
     public IEnumerator EndLoading()
     {
         animationController.SetBool("loading", false);
+        
         yield return endLoadWaitTime;
+        
         canvas.gameObject.SetActive(false);
+        
         playerList.ForEach(player =>
         {
             player.ExitCinematic();
         });
 
-        // gameplayManager.SetWaves(UnityEngine.Random.Range(2, 4));
         stateMachine.ChangeGameState(stateMachine.gameplayState);
     }
 
@@ -89,7 +97,15 @@ public class GameMaster : MonoBehaviour
     public void StartGame(bool twoPlayer)
     {
         twoPlayerMode = twoPlayer;
+        StartLoading();
+        StartCoroutine(WaitForGameLoad());
+    }
+
+    private IEnumerator WaitForGameLoad()
+    {
+        yield return endLoadWaitTime;
         ChangeGameScene(2);
+        StartCoroutine(EndLoading());
     }
 
     public void StartDevRoom()

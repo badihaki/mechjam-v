@@ -17,7 +17,8 @@ public class Player : MonoBehaviour, IDamageable
     [field: SerializeField] public PlayerAttackController AttackController { get; private set; }
 	[field: SerializeField] public PlayerUIController UIController { get; private set; }
 	[field: SerializeField] public GameObject CharacterModel { get; private set; }
-    [field:SerializeField] public Animator AnimationController {  get; private set; }
+	[field: SerializeField] public Collider CharacterBody { get; private set; }
+	[field:SerializeField] public Animator AnimationController {  get; private set; }
     private WaitForSeconds hurtAnimTime = new WaitForSeconds(0.35f);
 
     private bool playerReady = false;
@@ -38,9 +39,11 @@ public class Player : MonoBehaviour, IDamageable
             // controls
             Controls = GetComponent<PlayerControlsManager>();
 
-            // character model
+            // character model and body
             CharacterModel = transform.Find("Char").gameObject;
             CharacterModel.SetActive(false);
+            CharacterBody = transform.Find("Body").GetComponent<Collider>();
+            CharacterBody.enabled = false;
 
             // animation
             AnimationController = CharacterModel.GetComponent<Animator>();
@@ -111,7 +114,10 @@ public class Player : MonoBehaviour, IDamageable
         
         // character model
         CharacterModel.SetActive(true);
-        stateMachine.ChangeState(stateMachine.gameplayState);
+		CharacterBody.enabled = true;
+
+        // change state
+		stateMachine.ChangeState(stateMachine.gameplayState);
 
         // will need to build character later
     }
