@@ -53,7 +53,7 @@ public class FloorManager : MonoBehaviour
             GameMaster.Entity.gameplayManager.AddEnemy();
             Instantiate(enemyToSpawn, spawnPoint.transform.position, Quaternion.identity);
             spawnPoint.OccupySpawn();
-            print($"spawning enemy #{i}/{numberToSpawn}::{enemyToSpawn.name} || at spawn point: {spawnPoint.name}");
+            // print($"spawning enemy #{i}/{numberToSpawn}::{enemyToSpawn.name} || at spawn point: {spawnPoint.name}");
         }
     }
 

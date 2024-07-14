@@ -50,6 +50,8 @@ public class GameMaster : MonoBehaviour
     public void StartLoading()
     {
         canvas.gameObject.SetActive(true);
+        if (!twoPlayerMode)
+            canvas.transform.Find("P2Container").gameObject.SetActive(false);
         stateMachine.ChangeGameState(stateMachine.loadingState);
         animationController.SetBool("loading", true);
     }
@@ -123,8 +125,8 @@ public class GameMaster : MonoBehaviour
                 print($"try to find spawn with id of {playerList[i].PlayerID}");
 			    Transform spawn = GameObject.Find($"P{playerList[i].PlayerID}Spawn").transform;
 			    Player player = playerList[i];
-                player.transform.position = spawn.position;
                 player.StartPlayerGameplay();
+                player.transform.position = spawn.position;
 		    }
             gameStarted = true;
         }

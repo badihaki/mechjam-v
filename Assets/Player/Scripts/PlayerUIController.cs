@@ -18,8 +18,13 @@ public class PlayerUIController : MonoBehaviour
     {
         player = _player;
         uiContainer = GameObject.Find("PlayerCanvas").transform.Find($"P{player.PlayerID}Container");
-        if(!uiContainer) uiContainer = GameObject.Find("PlayerCanvas").transform.Find($"P1Container");
-
+/*        
+        if (!uiContainer)
+        {
+            uiContainer = GameObject.Find("PlayerCanvas").transform.Find($"P1Container");
+            print("defaulting");
+        }
+*/
 		SetUpComponents();
         SetUpEvents();
     }

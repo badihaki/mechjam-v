@@ -7,12 +7,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [field: SerializeField] public Health health { get; private set; }
+    [field: SerializeField] public Health health { get; protected set; }
     [SerializeField] private Vector2 healthRanges;
-    [field: SerializeField] public Transform target { get; private set; }
-    public EnemyLocomotionController locomotionController { get; private set; }
-    public EnemyAttackController attackController { get; private set; }
-    private EnemyInventory inventory;
+    [field: SerializeField] public Transform target { get; protected set; }
+    public EnemyLocomotionController locomotionController { get; protected set; }
+    public EnemyAttackController attackController { get; protected set; }
+    protected EnemyInventory inventory;
     [field: SerializeField, Header("State Machine")] public EnemyStateMachine stateMachine { get; private set; }
 
 
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour, IDamageable
         InitializeEntity(healthMin, healthMax);
     }
 
-    private void InitializeEntity(int min, int max)
+    protected virtual void InitializeEntity(int min, int max)
     {
         // health
         health = transform.AddComponent<Health>();
@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour, IDamageable
         FindNewPlayerTarget();
     }
 
-    private void BuildStateMachine()
+    protected void BuildStateMachine()
     {
         stateMachine = GetComponent<EnemyStateMachine>();
         stateMachine?.InitializeFSM(this);
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour, IDamageable
         health.onHealthChange -= DidEntityDie;
     }
 
-    private void DidEntityDie(int health)
+    protected void DidEntityDie(int health)
     {
         if(health <= 0)
         {

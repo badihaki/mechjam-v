@@ -84,6 +84,7 @@ public class Player : MonoBehaviour, IDamageable
         print($"controlType is {controlType}");
         if (controlType == "KBM") IsUsingKBMP = true;
         else IsUsingKBMP = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void StartDevMode()
