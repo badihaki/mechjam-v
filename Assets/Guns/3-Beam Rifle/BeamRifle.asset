@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113ed60a5bc39ac4ea8cebdf89d9573e, type: 3}
+  m_Name: BeamRifle
+  m_EditorClassIdentifier: 
+  gunName: Beam Rifle
+  damage: 3
+  fireRate: 0.85
+  maxAmmo: 6
+  reloadTime: 2.35
+  projectile: {fileID: 4263766586755111797, guid: 12c3c61c52b88c340be5925d22d161d4, type: 3}
+  enemyProjectile: {fileID: 0}
+  gunStyle: 2
+  rightObj: {fileID: 7320654942715955672, guid: aff1eeff66052ac45a6a02d763f8b677, type: 3}
+  leftObj: {fileID: 0}

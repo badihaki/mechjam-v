@@ -55,6 +55,7 @@ public class PlayerAttackController : MonoBehaviour
 	public void GetNewGun(GunTemplate newWeapon)
     {
         gun = newWeapon;
+		SelectGunStyle();
 		SwitchGunObject();
         // StartCoroutine(SelectGunStyle());
     }
@@ -67,16 +68,25 @@ public class PlayerAttackController : MonoBehaviour
 
     private void SwitchGunObject()
 	{
-		if (rightWeapon)
-		{
-			Destroy(rightWeapon.gameObject);
-			rightWeapon = null;
-		}
-		if (gun.rightObj)
-		{
-			rightWeapon = Instantiate(gun.rightObj, rightWeaponPoint);
-		}
-	}
+        if (rightWeapon)
+        {
+            Destroy(rightWeapon.gameObject);
+            rightWeapon = null;
+        }
+        if (gun.rightObj)
+        {
+            rightWeapon = Instantiate(gun.rightObj, rightWeaponPoint);
+        }
+        if (leftWeapon)
+        {
+            Destroy(rightWeapon.gameObject);
+            rightWeapon = null;
+        }
+        if (gun.leftObj)
+        {
+            leftWeapon = Instantiate(gun.rightObj, leftWeaponPoint);
+        }
+    }
 
     public void SelectGunStyle()
     {
@@ -86,6 +96,16 @@ public class PlayerAttackController : MonoBehaviour
                 player.AnimationController.SetBool("1H", true); // oneHand
                 player.AnimationController.SetBool("2H", false);
                 player.AnimationController.SetBool("dual", false);
+                break;
+            case GunStyle.twoHand:
+                player.AnimationController.SetBool("1H", false); // oneHand
+                player.AnimationController.SetBool("2H", true);
+                player.AnimationController.SetBool("dual", false);
+                break;
+            case GunStyle.dual:
+                player.AnimationController.SetBool("1H", false); // oneHand
+                player.AnimationController.SetBool("2H", false);
+                player.AnimationController.SetBool("dual", true);
                 break;
         }
     }

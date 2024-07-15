@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113ed60a5bc39ac4ea8cebdf89d9573e, type: 3}
+  m_Name: DualBlaster
+  m_EditorClassIdentifier: 
+  gunName: Dual Blasters
+  damage: 2
+  fireRate: 0.15
+  maxAmmo: 25
+  reloadTime: 1.8
+  projectile: {fileID: 4263766586755111797, guid: 54b8c270e6b8cf74eb1a3f8d73c80971, type: 3}
+  enemyProjectile: {fileID: 4263766586755111797, guid: 452c3d49b61e05245b0f0688c3ca5232, type: 3}
+  gunStyle: 1
+  rightObj: {fileID: 7320654942715955672, guid: aff1eeff66052ac45a6a02d763f8b677, type: 3}
+  leftObj: {fileID: 7320654942715955672, guid: aff1eeff66052ac45a6a02d763f8b677, type: 3}
