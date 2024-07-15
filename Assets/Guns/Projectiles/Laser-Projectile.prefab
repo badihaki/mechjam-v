@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c019852737c9943a03495f30a9d098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectiveRange: 30
+  effectiveRange: 99.98
 --- !u!120 &3574736193715954655
 LineRenderer:
   serializedVersion: 2

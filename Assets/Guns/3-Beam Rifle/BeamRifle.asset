@@ -20,5 +20,5 @@ MonoBehaviour:
   projectile: {fileID: 4263766586755111797, guid: 12c3c61c52b88c340be5925d22d161d4, type: 3}
   enemyProjectile: {fileID: 0}
   gunStyle: 2
-  rightObj: {fileID: 7320654942715955672, guid: aff1eeff66052ac45a6a02d763f8b677, type: 3}
+  rightObj: {fileID: 7320654942715955672, guid: bcd24291a4cebe047b52d3a4d03f932a, type: 3}
   leftObj: {fileID: 0}
