@@ -70,12 +70,12 @@ public class GameMaster : MonoBehaviour
         
         canvas.gameObject.SetActive(false);
         
+        stateMachine.ChangeGameState(stateMachine.gameplayState);
+
         playerList.ForEach(player =>
         {
             player.ExitCinematic();
         });
-
-        stateMachine.ChangeGameState(stateMachine.gameplayState);
     }
 
     private void InitializeGame()

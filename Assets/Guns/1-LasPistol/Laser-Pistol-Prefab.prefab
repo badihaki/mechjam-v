@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7268152612565302016
+--- !u!1 &4544318358700027276
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2991322900780114525}
-  - component: {fileID: 6123519191906500070}
-  - component: {fileID: 6047578219508707315}
+  - component: {fileID: 3772743068422879030}
+  - component: {fileID: 285031079443085459}
+  - component: {fileID: 2598670479354383449}
   m_Layer: 0
-  m_Name: blaster
+  m_Name: beam-pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2991322900780114525
+--- !u!4 &3772743068422879030
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268152612565302016}
+  m_GameObject: {fileID: 4544318358700027276}
   serializedVersion: 2
   m_LocalRotation: {x: -0.015559771, y: -0.0938694, z: -0.99411017, w: -0.05187925}
   m_LocalPosition: {x: -0.0035, y: 0.0329, z: 0.0024}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4666743647656910212}
   m_LocalEulerAnglesHint: {x: -10.662, y: -357.628, z: 173.804}
---- !u!33 &6123519191906500070
+--- !u!33 &285031079443085459
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268152612565302016}
-  m_Mesh: {fileID: 2941274158721294118, guid: 77cd8612d9a2c364499b5d3a76abd55a, type: 3}
---- !u!23 &6047578219508707315
+  m_GameObject: {fileID: 4544318358700027276}
+  m_Mesh: {fileID: 8087619128823833828, guid: c5793a8d02fcd6847af1b8c6c8997499, type: 3}
+--- !u!23 &2598670479354383449
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268152612565302016}
+  m_GameObject: {fileID: 4544318358700027276}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c81020b9d177d8246a3fa1da657c3052, type: 2}
+  - {fileID: 4874126678125670354, guid: c5793a8d02fcd6847af1b8c6c8997499, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4666743647656910212}
   m_Layer: 0
-  m_Name: Blaster
+  m_Name: Laser-Pistol-Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,6 +112,6 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 2991322900780114525}
+  - {fileID: 3772743068422879030}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

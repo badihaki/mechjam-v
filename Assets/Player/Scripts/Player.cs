@@ -87,7 +87,16 @@ public class Player : MonoBehaviour, IDamageable
         print($"controlType is {controlType}");
         if (controlType == "KBM") IsUsingKBMP = true;
         else IsUsingKBMP = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        if (IsUsingKBMP)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+/*
+        else if(!IsUsingKBMP && PlayerID == 1)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+*/
     }
 
     public void StartDevMode()
@@ -96,6 +105,8 @@ public class Player : MonoBehaviour, IDamageable
         SetPID(1);
         SetControlType();
         StartPlayerGameplay();
+        // change state
+        stateMachine.ChangeState(stateMachine.gameplayState);
     }
 
     public void EnterCinematic() => stateMachine.ChangeState(stateMachine.cinematicState);
@@ -103,21 +114,26 @@ public class Player : MonoBehaviour, IDamageable
 
     public void StartPlayerGameplay()
     {
+        // character model
+        CharacterModel.SetActive(true);
+		CharacterBody.enabled = true;
+        
+
+        // locomotion
 		LocomotionController.enabled = true;
-		LocomotionController.physicsController.useGravity = true;
         LocomotionController.GetNewCamera();
+        LocomotionController.physicsController.useGravity = true;
+        // LocomotionController.physicsController.useGravity = false;
+
+        // attack
         AttackController.enabled = true;
 
         // ui
 		UIController = transform.AddComponent<PlayerUIController>();
 		UIController.InitializeController(this);
-        
-        // character model
-        CharacterModel.SetActive(true);
-		CharacterBody.enabled = true;
 
         // change state
-		stateMachine.ChangeState(stateMachine.gameplayState);
+		// stateMachine.ChangeState(stateMachine.gameplayState);
 
         // will need to build character later
     }

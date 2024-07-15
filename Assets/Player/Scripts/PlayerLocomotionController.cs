@@ -19,7 +19,6 @@ public class PlayerLocomotionController : MonoBehaviour
     [SerializeField] private float dashForce = 35.0f;
     [field: SerializeField] public bool movementEnabled { get; private set; }
 
-
     private Camera cam;
 
     public void InitializeController(Player _player)
@@ -50,6 +49,37 @@ public class PlayerLocomotionController : MonoBehaviour
             // gamepad
             GamepadMove();
         }
+
+        DetectGround();
+    }
+
+    private void DetectGround()
+    {
+        Ray groundRay = new Ray(transform.position, -transform.up);
+        RaycastHit hit;
+
+        if(Physics.Raycast(groundRay, out hit))
+        {
+            float distance = Vector3.Distance(transform.position, hit.point);
+            Vector3 velocity = physicsController.velocity;
+            if (distance < 0.35f)
+            {
+                physicsController.velocity = new Vector3(velocity.x, 0.0f, velocity.z);
+            }
+            else
+            {
+                physicsController.velocity = new Vector3(velocity.x, -speed * Time.deltaTime, velocity.z);
+            }
+        }
+        else
+        {
+            ResetPosition();
+        }
+    }
+
+    private void ResetPosition()
+    {
+        transform.position = GameObject.Find("PlayerPosReset").transform.position;
     }
 
     private void KbmMove()

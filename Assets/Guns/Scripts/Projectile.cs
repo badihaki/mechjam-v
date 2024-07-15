@@ -8,14 +8,16 @@ public class Projectile : MonoBehaviour
 {
     private Transform controllingEntity;
     private Rigidbody physicsController;
-    [SerializeField] private int damage;
+    [field: SerializeField] public int damage { get; private set; }
     [SerializeField] private float speed = 8.0f;
-    [SerializeField] private Vector2 forces;
+    [field: SerializeField] public Vector2 forces { get; private set; }
     [SerializeField] private GameObject impactVfx;
 
     private bool reflected = false;
     private bool reversed = false;
     private  WaitForSeconds reversedWait = new WaitForSeconds(0.35f);
+
+    [SerializeField] private float lifeTime = 4.0f;
 
     public void InitializeProjectile(Transform creator, int dmg)
     {
@@ -28,7 +30,7 @@ public class Projectile : MonoBehaviour
         float forceY = Random.Range(3.5f, 10);
         forces = new Vector2(forceX, forceY);
         physicsController.useGravity = false;
-        Destroy(gameObject, 4.0f);
+        Destroy(gameObject, lifeTime);
     }
 
 	private void FixedUpdate()

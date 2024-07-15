@@ -8,6 +8,13 @@ public class PlayerGameplayState : PlayerState
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        player.AttackController.SelectGunStyle();
+    }
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();

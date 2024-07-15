@@ -41,7 +41,7 @@ public class PlayerAttackController : MonoBehaviour
 		rightWeaponPoint = player.CharacterModel.transform.Find("Rig").Find("Root").Find("Pelvis").Find("Torso").Find("Hand.R").Find("Weapon.R");
         leftWeaponPoint = player.CharacterModel.transform.Find("Rig").Find("Root").Find("Pelvis").Find("Torso").Find("Hand.L").Find("Weapon.L");
 
-		StartCoroutine(SelectGunStyle());
+		// StartCoroutine(SelectGunStyle());
 		SwitchGunObject();
     }
 
@@ -56,7 +56,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         gun = newWeapon;
 		SwitchGunObject();
-        StartCoroutine(SelectGunStyle());
+        // StartCoroutine(SelectGunStyle());
     }
 
 	public void GetMoreAmmoStocks(int newAmmoStock)
@@ -78,9 +78,8 @@ public class PlayerAttackController : MonoBehaviour
 		}
 	}
 
-    private IEnumerator SelectGunStyle()
+    public void SelectGunStyle()
     {
-		yield return null;
         switch (gun.gunStyle)
         {
             case GunStyle.oneHand:
