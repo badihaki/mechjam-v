@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float speed = 8.0f;
     [field: SerializeField] public Vector2 forces { get; private set; }
     [SerializeField] private GameObject impactVfx;
+    [SerializeField] private AudioClip impactSoundfx;
 
     private bool reflected = false;
     private bool reversed = false;
@@ -65,6 +66,10 @@ public class Projectile : MonoBehaviour
             }
             else print("didn't instantiate impact");
                 Destroy(gameObject);
+            if (impactSoundfx)
+            {
+                GameMaster.Entity.audioController.PlayOneShot(impactSoundfx, 0.70f);
+            }
         }
         else if (reversed && !other.GetComponent<Player>())
         {
@@ -72,6 +77,7 @@ public class Projectile : MonoBehaviour
             if (impactVfx)
             {
                 Instantiate(impactVfx, transform.position, Quaternion.identity);
+                GameMaster.Entity.audioController.PlayOneShot(impactSoundfx, 0.70f);
             }
             Destroy(gameObject);
         }

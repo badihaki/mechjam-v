@@ -1183,6 +1183,66 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2afb4084-86a2-4241-ad2e-ecf2ed259fef
     m_ActionName: Gameplay/Reload[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 588055258887128989}
+        m_TargetAssemblyTypeName: PlayerControlsManager, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4144a442-740f-4d46-a520-4e0f681d7e77
+    m_ActionName: Gameplay/Pause[/Keyboard/escape,/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82c2bee4-c119-4b2d-be56-9044958f4180
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c4fd9237-ec23-4e2f-97b6-a8806780376d
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e6a352d1-31fd-4b02-ab39-a4b95039c5c4
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34903896-4440-4ca2-b5de-1b830f8cda43
+    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9a496b13-41c4-49dc-b3f7-d24b0e916148
+    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c743094-ad16-45fe-97ac-8d15e477bbc6
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3541d54d-c208-4035-8b14-e79e9bcbd68c
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe181dc2-fb2c-404a-b132-909976e1aaac
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 86ecf77c-c2ff-42d8-af78-9d7aa02112cd
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 594ad08b-b9d0-45cb-8076-3360b75efdd8
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34bb955a-6651-475a-8f30-f1310b542e2b
+    m_ActionName: UI/Unpause[/Keyboard/escape,/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

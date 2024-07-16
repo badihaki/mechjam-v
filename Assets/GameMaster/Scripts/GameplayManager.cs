@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
-    [field: SerializeField] public FloorManager currentFloor { get; private set; }
+    [SerializeField, Header("Pause")] private GameObject pausePrefab;
+    [field: SerializeField] public PauseManager pauseMenu { get; private set; }
+    [field: SerializeField, Header("Floors")] public FloorManager currentFloor { get; private set; }
+    [Header("Waves")]
     private WaitForSeconds waveWaitTime = new WaitForSeconds(3.0f);
     [field: SerializeField] public bool waveStarted { get; private set; } = false;
     [field: SerializeField] public int wavesLeft { get; private set; }
@@ -15,6 +18,14 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void MakePauseMenu()
+    {
+        if (!pauseMenu)
+            pauseMenu = Instantiate(pausePrefab, transform.position, Quaternion.identity).GetComponent<PauseManager>();
+        else
+            pauseMenu?.UnpauseGame();
     }
 
     public void StartNewWave()

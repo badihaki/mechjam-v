@@ -364,6 +364,8 @@ MonoBehaviour:
   playerList: []
   <twoPlayerMode>k__BackingField: 0
   <dev>k__BackingField: 0
+  <gameStarted>k__BackingField: 0
+  <audioController>k__BackingField: {fileID: 0}
 --- !u!114 &3973639421026762780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dade9c5f4a7aa943aaa08c0ba6118f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pausePrefab: {fileID: 4625235710511020400, guid: 740361469e8a20b489f81532d2426bd0, type: 3}
+  <pauseMenu>k__BackingField: {fileID: 0}
   <currentFloor>k__BackingField: {fileID: 0}
   <waveStarted>k__BackingField: 0
   <wavesLeft>k__BackingField: 0

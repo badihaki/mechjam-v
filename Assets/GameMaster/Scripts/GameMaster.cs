@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,7 @@ public class GameMaster : MonoBehaviour
     private Transform canvas;
     private Animator animationController;
     private WaitForSeconds endLoadWaitTime = new WaitForSeconds(1.57f);
+    [field: SerializeField] public AudioSource audioController { get; private set; }
 
     private void Awake()
     {
@@ -81,6 +83,7 @@ public class GameMaster : MonoBehaviour
     private void InitializeGame()
     {
         gameplayManager = GetComponent<GameplayManager>();
+        audioController = transform.AddComponent<AudioSource>();
         canvas = transform.Find("Canvas");
         canvas.gameObject.SetActive(false);
         animationController = GetComponent<Animator>();

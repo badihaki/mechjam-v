@@ -56,5 +56,17 @@ public class PlayerControlsManager : MonoBehaviour
 		else if (context.canceled) reloadInput = false;
 	}
     public void UseReload() => reloadInput = false;
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if(GameMaster.Entity.stateMachine.currentStateName == "Gameplay" || GameMaster.Entity.stateMachine.currentStateName == "Dev")
+        {
+            if (context.performed)
+            {
+                print("pausd menu");
+                GameMaster.Entity.gameplayManager.pauseMenu.PauseGame();
+            }
+        }
+    }
 	#endregion
 }

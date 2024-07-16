@@ -114,6 +114,19 @@ public class Player : MonoBehaviour, IDamageable
 
     public void StartPlayerGameplay()
     {
+        Activate();
+        // ui
+		UIController = transform.AddComponent<PlayerUIController>();
+		UIController.InitializeController(this);
+
+        // change state
+		// stateMachine.ChangeState(stateMachine.gameplayState);
+
+        // will need to build character later
+    }
+
+    public void Activate()
+    {
         // character model
         CharacterModel.SetActive(true);
 		CharacterBody.enabled = true;
@@ -127,15 +140,22 @@ public class Player : MonoBehaviour, IDamageable
 
         // attack
         AttackController.enabled = true;
+    }
 
-        // ui
-		UIController = transform.AddComponent<PlayerUIController>();
-		UIController.InitializeController(this);
+    public void Deactivate()
+    {
+        // character model
+        CharacterModel.SetActive(false);
+        CharacterBody.enabled = false;
 
-        // change state
-		// stateMachine.ChangeState(stateMachine.gameplayState);
 
-        // will need to build character later
+        // locomotion
+        LocomotionController.enabled = false;
+        LocomotionController.physicsController.useGravity = false;
+        // LocomotionController.physicsController.useGravity = false;
+
+        // attack
+        AttackController.enabled = false;
     }
 
     public void SetPID(int id) => PlayerID = id;

@@ -129,6 +129,14 @@ public class PlayerAttackController : MonoBehaviour
 	{
 		// print("shooting");
 		isShooting = true;
+        if (gun.shootSoundFx)
+        {
+			GameMaster.Entity.audioController.PlayOneShot(gun.shootSoundFx, 0.65f);
+        }
+		if (gun.shootFx)
+		{
+            Instantiate(gun.shootFx, shootPoint.position, transform.rotation);
+        }
 		currentAmmo--;
         onAmmoChanged(currentAmmo);
         fireRateTimer += gun.fireRate;

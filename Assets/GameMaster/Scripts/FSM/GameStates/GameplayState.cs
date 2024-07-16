@@ -17,6 +17,7 @@ public class GameplayState : GameState
 	{
 		base.EnterState();
 
+		GameMaster.Entity.gameplayManager.MakePauseMenu();
 		GameMaster.Entity.SpawnPlayersInGameWorld();
 		GameMaster.Entity.gameplayManager.SetWaves(UnityEngine.Random.Range(2, 4));
         // GameMaster.Entity.gameplayManager.SetWaves(1);

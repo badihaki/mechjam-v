@@ -83,6 +83,14 @@ public class EnemyAttackController : MonoBehaviour
         print($"{enemy.name} is attacking");
 
         Projectile projectile = Instantiate(gun.enemyProjectile, shootPoint.position, transform.rotation).GetComponent<Projectile>();
+        if (gun.shootSoundFx)
+        {
+            GameMaster.Entity.audioController.PlayOneShot(gun.shootSoundFx, 0.65f);
+        }
+        if (gun.shootFx)
+        {
+            Instantiate(gun.shootFx, shootPoint.position, transform.rotation);
+        }
         projectile.InitializeProjectile(enemy.transform, gun.damage);
     }
 }
