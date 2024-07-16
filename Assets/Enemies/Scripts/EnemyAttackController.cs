@@ -80,8 +80,7 @@ public class EnemyAttackController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        print($"{enemy.name} is attacking");
-
+        // print($"{enemy.name} is attacking");
         Projectile projectile = Instantiate(gun.enemyProjectile, shootPoint.position, transform.rotation).GetComponent<Projectile>();
         if (gun.shootSoundFx)
         {

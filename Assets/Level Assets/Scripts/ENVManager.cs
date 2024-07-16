@@ -15,6 +15,7 @@ public class ENVManager : MonoBehaviour
     [field: SerializeField] public Transform p1Start { get; private set; }
     [field: SerializeField] public Transform p2Start { get; private set; }
     private bool ready = false;
+    [field: SerializeField] public bool isShopEnv { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class ENVManager : MonoBehaviour
         p1Start = transform.Find("P1Start");
         p2Start = transform.Find("P2Start");
         ready = true;
+        if (isShopEnv) FinishBoard();
     }
 
     // Update is called once per frame

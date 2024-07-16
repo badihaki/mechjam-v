@@ -17,6 +17,7 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] private bool isReloading = false;
 	[SerializeField] private Transform shootPoint;
 	private bool isShooting = false;
+	private WaitForSeconds styleSwitchWait = new WaitForSeconds(0.25f);
 
 	// events
 	public delegate void AmmoChanged(int ammo);
@@ -41,8 +42,8 @@ public class PlayerAttackController : MonoBehaviour
 		rightWeaponPoint = player.CharacterModel.transform.Find("Rig").Find("Root").Find("Pelvis").Find("Torso").Find("Hand.R").Find("Weapon.R");
         leftWeaponPoint = player.CharacterModel.transform.Find("Rig").Find("Root").Find("Pelvis").Find("Torso").Find("Hand.L").Find("Weapon.L");
 
-		// StartCoroutine(SelectGunStyle());
-		SwitchGunObject();
+        // StartCoroutine(SelectGunStyle());
+        StartCoroutine(TriggerGunStyleChange());
     }
 
 	private void Update()
@@ -57,7 +58,7 @@ public class PlayerAttackController : MonoBehaviour
         gun = newWeapon;
 		SelectGunStyle();
 		SwitchGunObject();
-        // StartCoroutine(SelectGunStyle());
+        // StartCoroutine(TriggerGunStyleChange());
     }
 
 	public void GetMoreAmmoStocks(int newAmmoStock)
@@ -88,29 +89,39 @@ public class PlayerAttackController : MonoBehaviour
         }
     }
 
+	public void TriggerTriggerGunStyleSwitch() => StartCoroutine(TriggerGunStyleChange());
+
+	public IEnumerator TriggerGunStyleChange()
+	{
+		yield return styleSwitchWait;
+		SelectGunStyle();
+	}
+
     public void SelectGunStyle()
     {
-        switch (gun.gunStyle)
-        {
-            case GunStyle.oneHand:
-                player.AnimationController.SetBool("1H", true); // oneHand
-                player.AnimationController.SetBool("2H", false);
-                player.AnimationController.SetBool("dual", false);
-                break;
-            case GunStyle.twoHand:
-                player.AnimationController.SetBool("1H", false); // oneHand
-                player.AnimationController.SetBool("2H", true);
-                player.AnimationController.SetBool("dual", false);
-                break;
-            case GunStyle.dual:
-                player.AnimationController.SetBool("1H", false); // oneHand
-                player.AnimationController.SetBool("2H", false);
-                player.AnimationController.SetBool("dual", true);
-                break;
-        }
+		print($"is animator enables? {player.AnimationController.enabled}");
+		print($"what is the style??? {gun.gunStyle}");
+		switch (gun.gunStyle)
+		{
+		    case GunStyle.oneHand:
+		        player.AnimationController.SetBool("1H", true); // oneHand
+		        player.AnimationController.SetBool("2H", false);
+		        player.AnimationController.SetBool("dual", false);
+		        break;
+		    case GunStyle.twoHand:
+		        player.AnimationController.SetBool("1H", false); // oneHand
+		        player.AnimationController.SetBool("2H", true);
+		        player.AnimationController.SetBool("dual", false);
+		        break;
+		    case GunStyle.dual:
+		        player.AnimationController.SetBool("1H", false); // oneHand
+		        player.AnimationController.SetBool("2H", false);
+		        player.AnimationController.SetBool("dual", true);
+		        break;
+		}
     }
 
-	public void SetCanShoot(bool canPlayerShoot) => playerCanShoot = canPlayerShoot;
+    public void SetCanShoot(bool canPlayerShoot) => playerCanShoot = canPlayerShoot;
 	public void SetCanMelee(bool canPlayerMelee) => playerCanMeleeAtk = canPlayerMelee;
 
     public void CanShoot()
@@ -150,7 +161,7 @@ public class PlayerAttackController : MonoBehaviour
 		{
 			if (playerCanMeleeAtk)
 			{
-				print("melee-ing");
+				// print("melee-ing");
 				player.AnimationController.SetBool("melee", true);
 				playerCanMeleeAtk = false;
 				player.Controls.UseMelee();

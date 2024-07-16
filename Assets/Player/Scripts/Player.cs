@@ -104,7 +104,7 @@ public class Player : MonoBehaviour, IDamageable
         print("Player is starting gameplay in ~DEV MODE~");
         SetPID(1);
         SetControlType();
-        StartPlayerGameplay();
+        // StartPlayerGameplay();
         // change state
         stateMachine.ChangeState(stateMachine.gameplayState);
     }

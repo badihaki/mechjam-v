@@ -11,15 +11,21 @@ public class GameplayState : GameState
 	}
 
 	private bool startGameplay = false;
+	private bool shop = false;
 	private float gameplayStartTimer;
 
 	public override void EnterState()
 	{
 		base.EnterState();
 
-		GameMaster.Entity.gameplayManager.MakePauseMenu();
+		shop = GameMaster.Entity.gameplayManager.currentFloor.isAtShop;
+
+        GameMaster.Entity.gameplayManager.MakePauseMenu();
 		GameMaster.Entity.SpawnPlayersInGameWorld();
-		GameMaster.Entity.gameplayManager.SetWaves(UnityEngine.Random.Range(2, 4));
+		if (!shop)
+		{
+			GameMaster.Entity.gameplayManager.SetWaves(UnityEngine.Random.Range(2, 4));
+		}
         // GameMaster.Entity.gameplayManager.SetWaves(1);
 		// Debug.Log("1 wave for debug");
 		gameplayStartTimer = UnityEngine.Random.Range(1.0f, 3.0f);
@@ -30,7 +36,7 @@ public class GameplayState : GameState
 	{
 		base.UpdateGameLogic();
 
-		if(!startGameplay)
+		if(!startGameplay && !shop)
 		{
 			gameplayStartTimer -= Time.deltaTime;
 			if(gameplayStartTimer < 0.0f )

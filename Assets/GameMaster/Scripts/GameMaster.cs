@@ -53,7 +53,6 @@ public class GameMaster : MonoBehaviour
     {
 		GameMaster.Entity.playerList.ForEach(player =>
 		{
-			// Console.WriteLine("entering cinematic");
 			print("entering cinematic");
 			player.EnterCinematic();
 		});

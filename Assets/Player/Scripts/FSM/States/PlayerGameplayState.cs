@@ -12,7 +12,9 @@ public class PlayerGameplayState : PlayerState
     {
         base.Enter();
 
-        player.AttackController.SelectGunStyle();
+        // player.AttackController.SelectGunStyle();
+        player.AttackController.TriggerTriggerGunStyleSwitch();
+        Debug.Log("selecting style");
     }
 
     public override void PhysicsUpdate()
