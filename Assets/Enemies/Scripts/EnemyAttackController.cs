@@ -26,7 +26,7 @@ public class EnemyAttackController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        enemy.animationController.SetBool("shoot", isAttacking);
     }
 
     public void ControlAttackWaitTimer()

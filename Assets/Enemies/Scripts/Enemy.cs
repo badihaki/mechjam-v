@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [field: SerializeField] public Transform target { get; protected set; }
     public EnemyLocomotionController locomotionController { get; protected set; }
     public EnemyAttackController attackController { get; protected set; }
+    [field: SerializeField] public Animator animationController { get; private set; }
     protected EnemyInventory inventory;
     [field: SerializeField, Header("State Machine")] public EnemyStateMachine stateMachine { get; private set; }
 
@@ -42,6 +43,9 @@ public class Enemy : MonoBehaviour, IDamageable
         // attack
         attackController = GetComponent<EnemyAttackController>();
         attackController.InitializeController(this);
+
+        // animation
+        animationController = transform.Find("Gfx").GetComponent<Animator>();
 
         // state machine
         BuildStateMachine();
@@ -91,5 +95,6 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Damage(Transform entity, int damage, Vector2 force)
     {
         health.ChangeHealth(health.currentHealth - damage);
+        animationController.SetTrigger("hurt");
     }
 }

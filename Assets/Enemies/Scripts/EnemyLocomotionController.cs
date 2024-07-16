@@ -8,6 +8,7 @@ public class EnemyLocomotionController : MonoBehaviour
     private Enemy enemy;
     [field: SerializeField] public float speed { get; private set; } = 4.75f;
     [field: SerializeField] public float dashSpeed { get; private set; } = 6.075f;
+    private float currentSpeed;
     [field: SerializeField] public Vector2 minAndMaxRange { get; private set; } = new Vector2(10.25f, 13.557f);
     private NavMeshAgent navAgent;
     private Rigidbody physicsController;
@@ -24,7 +25,8 @@ public class EnemyLocomotionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        currentSpeed = Mathf.Clamp(navAgent.velocity.magnitude, 0.0f, 1.0f);
+        enemy.animationController.SetFloat("speed", currentSpeed);
     }
 
     public bool TryMoveToTarget()

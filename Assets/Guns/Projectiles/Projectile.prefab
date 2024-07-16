@@ -118,7 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8413c74397f89e44906aab81eb1a13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  <damage>k__BackingField: 0
   speed: 40
-  forces: {x: 0, y: 0}
-  impactVfx: {fileID: 0}
+  <forces>k__BackingField: {x: 0, y: 0}
+  impactVfx: {fileID: 2625945880766848813, guid: 70efc0974d0174049bc05d8a519fb609, type: 3}
+  lifeTime: 4

@@ -14,4 +14,6 @@ public class GunTemplate : ScriptableObject
 	public GameObject enemyProjectile;
 	public GunStyle gunStyle;
 	public GameObject rightObj, leftObj;
+	[Header("effects")]
+	public GameObject shootFx;
 }
