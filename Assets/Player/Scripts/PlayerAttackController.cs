@@ -44,6 +44,7 @@ public class PlayerAttackController : MonoBehaviour
 
         // StartCoroutine(SelectGunStyle());
         StartCoroutine(TriggerGunStyleChange());
+		SwitchGunObject();
     }
 
 	private void Update()
@@ -56,6 +57,10 @@ public class PlayerAttackController : MonoBehaviour
 	public void GetNewGun(GunTemplate newWeapon)
     {
         gun = newWeapon;
+		ammoStock++;
+		onAmmoChanged(ammoStock);
+		currentAmmo = 0;
+		onAmmoChanged(currentAmmo);
 		SelectGunStyle();
 		SwitchGunObject();
         // StartCoroutine(TriggerGunStyleChange());
@@ -80,12 +85,12 @@ public class PlayerAttackController : MonoBehaviour
         }
         if (leftWeapon)
         {
-            Destroy(rightWeapon.gameObject);
-            rightWeapon = null;
+            Destroy(leftWeapon.gameObject);
+            leftWeapon = null;
         }
         if (gun.leftObj)
         {
-            leftWeapon = Instantiate(gun.rightObj, leftWeaponPoint);
+            leftWeapon = Instantiate(gun.leftObj, leftWeaponPoint);
         }
     }
 

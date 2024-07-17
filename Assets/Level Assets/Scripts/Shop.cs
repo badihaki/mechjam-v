@@ -27,7 +27,7 @@ public class Shop : MonoBehaviour, IInteractable
         
     }
 
-    public void Interact()
+    public void Interact(Player player)
     {
         cinematographer.Priority = 10;
         regCam.Priority = 0;

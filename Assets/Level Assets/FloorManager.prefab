@@ -51,5 +51,7 @@ MonoBehaviour:
   - {fileID: 3552330553510014080, guid: ad4008d9c5db68747b103a761a2c9b1e, type: 3}
   - {fileID: 3552330553510014080, guid: dd6950fade2efc045a7c8eebf33db662, type: 3}
   - {fileID: 3552330553510014080, guid: 69808f01c273af548b2f11c666a98894, type: 3}
+  - {fileID: 3552330553510014080, guid: 988f2efc858d17346b6deba32cede919, type: 3}
+  - {fileID: 3552330553510014080, guid: 765d8186ed780ef4380f1ea932d708a8, type: 3}
   <isAtShop>k__BackingField: 0
   shopEnv: {fileID: 6648561769276217230, guid: 6455714d76397d343a86dd55fe74efde, type: 3}

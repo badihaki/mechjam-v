@@ -45,7 +45,7 @@ public class PlayerInteractionController : MonoBehaviour
         {
             if(interactable != null)
             {
-                interactable.Interact();
+                interactable.Interact(player);
             }
             player.Controls.UseInteract();
         }
