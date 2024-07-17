@@ -1102,6 +1102,7 @@ Transform:
   - {fileID: 4674801385454684027}
   - {fileID: 541388766516615282}
   - {fileID: 8680747729766497826}
+  - {fileID: 2541204181612948153}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1898377470957698181
@@ -1396,6 +1397,8 @@ MonoBehaviour:
   dashTimer: 0
   dashAvailable: 1
   dashForce: 35
+  feetFxPoint: {fileID: 0}
+  dashVFX: {fileID: 4386165275553091386, guid: 4e7a2f0a9be426846a949272ca734a0a, type: 3}
   <movementEnabled>k__BackingField: 0
 --- !u!114 &4613164862998707594
 MonoBehaviour:
@@ -1702,6 +1705,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4007352079869090630}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8864442218406770398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2541204181612948153}
+  m_Layer: 0
+  m_Name: FeetVFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2541204181612948153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8864442218406770398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: -0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4861553598983548048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9202184378897249507
 GameObject:

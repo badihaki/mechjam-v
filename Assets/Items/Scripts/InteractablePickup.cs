@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractablePickup : MonoBehaviour, IInteractable
+public class InteractablePickup : ItemPickup, IInteractable
 {
 	public Rigidbody physicsController { get; protected set; }
 

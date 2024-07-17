@@ -17,12 +17,15 @@ public class PlayerLocomotionController : MonoBehaviour
     [SerializeField] private float dashTimer = 0.0f;
     [SerializeField] private bool dashAvailable = true;
     [SerializeField] private float dashForce = 35.0f;
+    [SerializeField] private Transform feetFxPoint;
+    [SerializeField] private GameObject dashVFX;
     [field: SerializeField] public bool movementEnabled { get; private set; }
 
     private Camera cam;
 
     public void InitializeController(Player _player)
     {
+        feetFxPoint = transform.Find("FeetVFX");
         player = _player;
         physicsController = GetComponent<Rigidbody>();
         movementEnabled = true;
@@ -176,11 +179,14 @@ public class PlayerLocomotionController : MonoBehaviour
         transform.LookAt(movement);
         if (movement == Vector3.zero) movement = transform.forward;
 
+        // vfx
+
         // apply direction and dashForce to physicsController's velocity
         while (dashTimer > 0.0f)
         {
             dashTimer -= Time.deltaTime;
             physicsController.velocity = movement * dashForce;
+            Instantiate(dashVFX, feetFxPoint.position, Quaternion.identity);
             yield return null;
         }
 
