@@ -17,7 +17,11 @@ public class GameMaster : MonoBehaviour
     public GMFiniteStateMachine stateMachine { get; private set; }
     public GameplayManager gameplayManager { get; private set; }
     private Transform canvas;
-    private Animator animationController;
+    private Transform endGameScreen;
+	private Transform winText;
+    private Transform loseText;
+
+	private Animator animationController;
     private WaitForSeconds endLoadWaitTime = new WaitForSeconds(1.57f);
     [field: SerializeField] public AudioSource audioController { get; private set; }
 
@@ -83,17 +87,71 @@ public class GameMaster : MonoBehaviour
     {
         gameplayManager = GetComponent<GameplayManager>();
         audioController = transform.AddComponent<AudioSource>();
+        
         canvas = transform.Find("Canvas");
-        canvas.gameObject.SetActive(false);
+        endGameScreen = canvas.Find("EndGame");
+        winText = endGameScreen.Find("Win").transform;
+        loseText = endGameScreen.Find("Lose").transform;
+
+        endGameScreen.gameObject.SetActive(false);
+		canvas.gameObject.SetActive(false);
+
         animationController = GetComponent<Animator>();
+        
         stateMachine = GetComponent<GMFiniteStateMachine>();
         stateMachine.InitializeGameStateMachine();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void WinGame()
+    {
+        canvas.gameObject.SetActive(true);
+		endGameScreen.gameObject.SetActive(true);
+
+		loseText.gameObject.SetActive(false);
+
+		playerList.ForEach(player =>
+        {
+            player.Deactivate();
+        });
+    }
+    public void LoseGame()
+    {
+		canvas.gameObject.SetActive(true);
+        endGameScreen.gameObject.SetActive(true);
+		
+		winText.gameObject.SetActive(false);
+
+		playerList.ForEach(player =>
+		{
+			player.Deactivate();
+		});
+	}
+
+	public void QuitGame()
+	{
+		// save any game data here
+#if UNITY_EDITOR
+		// Application.Quit() does not work in the editor so
+		// UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+		UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+	}
+
+	// Update is called once per frame
+	void Update()
     {
 
+    }
+
+    public void RestartGame(bool twoPlayer)
+    {
+        playerList.ForEach(player =>
+        {
+            player.Health.InitializeHealth(20);
+        });
+        StartGame(twoPlayer);
     }
 
     public void StartGame(bool twoPlayer)

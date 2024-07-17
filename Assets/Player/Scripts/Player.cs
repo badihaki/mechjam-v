@@ -184,9 +184,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        print($"player({PlayerID}) was killed");
-        GameMaster.Entity.playerList.Remove(this);
-        Destroy(gameObject);
+        GameMaster.Entity.LoseGame();
     }
 
     public void Damage(Transform entity, int damage, Vector2 force)
