@@ -75,7 +75,7 @@ public class GameMaster : MonoBehaviour
 
         playerList.ForEach(player =>
         {
-            player.ExitCinematic();
+            player.ReturnToGameplayState();
         });
     }
 

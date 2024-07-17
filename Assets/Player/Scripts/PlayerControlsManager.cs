@@ -12,9 +12,10 @@ public class PlayerControlsManager : MonoBehaviour
     [field: SerializeField] public bool meleeInput { get; private set; }
     [field: SerializeField] public bool dashInput { get; private set; }
     [field: SerializeField] public bool reloadInput { get; private set; }
+    [field: SerializeField] public bool interactInput { get; private set; }
 
-	#region move/look
-	public void OnMove(InputAction.CallbackContext context)
+    #region move/look
+    public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>().normalized;
         float x = Mathf.Round(input.x);
@@ -57,6 +58,7 @@ public class PlayerControlsManager : MonoBehaviour
 	}
     public void UseReload() => reloadInput = false;
 
+	#endregion
     public void OnPause(InputAction.CallbackContext context)
     {
         if(GameMaster.Entity.stateMachine.currentStateName == "Gameplay" || GameMaster.Entity.stateMachine.currentStateName == "Dev")
@@ -68,5 +70,17 @@ public class PlayerControlsManager : MonoBehaviour
             }
         }
     }
-	#endregion
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            interactInput = true;
+        }
+        else
+        {
+            interactInput = false;
+        }
+    }
+    public void UseInteract() => interactInput = false;
 }

@@ -16,6 +16,7 @@ public class Player : MonoBehaviour, IDamageable
     [field: SerializeField] public PlayerLocomotionController LocomotionController { get; private set; }
     [field: SerializeField] public PlayerAttackController AttackController { get; private set; }
 	[field: SerializeField] public PlayerUIController UIController { get; private set; }
+    [SerializeField] public PlayerInteractionController InteractionController { get; private set; }
 	[field: SerializeField] public GameObject CharacterModel { get; private set; }
 	[field: SerializeField] public Collider CharacterBody { get; private set; }
 	[field:SerializeField] public Animator AnimationController {  get; private set; }
@@ -64,6 +65,11 @@ public class Player : MonoBehaviour, IDamageable
             AttackController.InitializeController(this);
             AttackController.enabled = false;
 
+            // interactions
+            InteractionController = GetComponent<PlayerInteractionController>();
+            InteractionController.InitializeController(this);
+            InteractionController.enabled = false;
+
 		    // state machine
 		    stateMachine = GetComponent<PlayerFSM>();
             stateMachine.InitializeStateMachine(this);
@@ -110,7 +116,8 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     public void EnterCinematic() => stateMachine.ChangeState(stateMachine.cinematicState);
-    public void ExitCinematic() => stateMachine.ChangeState(stateMachine.gameplayState);
+    public void EnterMenu() => stateMachine.ChangeState(stateMachine.menuState);
+    public void ReturnToGameplayState() => stateMachine.ChangeState(stateMachine.gameplayState);
 
     public void StartPlayerGameplay()
     {
@@ -138,6 +145,8 @@ public class Player : MonoBehaviour, IDamageable
         LocomotionController.physicsController.useGravity = true;
         // LocomotionController.physicsController.useGravity = false;
 
+        InteractionController.enabled = true;
+
         // attack
         AttackController.enabled = true;
     }
@@ -153,6 +162,8 @@ public class Player : MonoBehaviour, IDamageable
         LocomotionController.enabled = false;
         LocomotionController.physicsController.useGravity = false;
         // LocomotionController.physicsController.useGravity = false;
+
+        InteractionController.enabled = false;
 
         // attack
         AttackController.enabled = false;

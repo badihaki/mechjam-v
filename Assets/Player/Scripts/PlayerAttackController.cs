@@ -99,8 +99,8 @@ public class PlayerAttackController : MonoBehaviour
 
     public void SelectGunStyle()
     {
-		print($"is animator enables? {player.AnimationController.enabled}");
-		print($"what is the style??? {gun.gunStyle}");
+		// print($"is animator enables? {player.AnimationController.enabled}");
+		// print($"what is the style??? {gun.gunStyle}");
 		switch (gun.gunStyle)
 		{
 		    case GunStyle.oneHand:
