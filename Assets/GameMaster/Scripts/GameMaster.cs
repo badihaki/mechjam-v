@@ -24,8 +24,10 @@ public class GameMaster : MonoBehaviour
 	private Animator animationController;
     private WaitForSeconds endLoadWaitTime = new WaitForSeconds(1.57f);
     [field: SerializeField] public AudioSource audioController { get; private set; }
+    [SerializeField] private AudioClip winMusic;
+    [SerializeField] private AudioClip loseMusic;
 
-    private void Awake()
+	private void Awake()
     {
         if (Entity == null && Entity != this)
         {
@@ -104,7 +106,10 @@ public class GameMaster : MonoBehaviour
 
     public void WinGame()
     {
-        Time.timeScale = 0.0f;
+        gameplayManager.currentFloor.audioController.Stop();
+		audioController.PlayOneShot(winMusic);
+
+		Time.timeScale = 0.0f;
 
         canvas.gameObject.SetActive(true);
 		endGameScreen.gameObject.SetActive(true);
@@ -118,7 +123,10 @@ public class GameMaster : MonoBehaviour
     }
     public void LoseGame()
     {
-        Time.timeScale = 0.0f;
+		gameplayManager.currentFloor.audioController.Stop();
+        audioController.PlayOneShot(loseMusic);
+
+		Time.timeScale = 0.0f;
 
 		canvas.gameObject.SetActive(true);
         endGameScreen.gameObject.SetActive(true);

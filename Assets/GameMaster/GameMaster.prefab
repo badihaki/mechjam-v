@@ -1525,6 +1525,8 @@ MonoBehaviour:
   <dev>k__BackingField: 0
   <gameStarted>k__BackingField: 0
   <audioController>k__BackingField: {fileID: 0}
+  winMusic: {fileID: 8300000, guid: 3e09bfdad9a4c3048afc99d75a5d0ba3, type: 3}
+  loseMusic: {fileID: 8300000, guid: 7224aca62a344b142aee8115b2ed15fc, type: 3}
 --- !u!114 &3973639421026762780
 MonoBehaviour:
   m_ObjectHideFlags: 0

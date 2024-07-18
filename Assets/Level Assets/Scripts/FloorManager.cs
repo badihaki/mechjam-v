@@ -15,6 +15,7 @@ public class FloorManager : MonoBehaviour
     [field: SerializeField] public bool isAtShop { get; private set; }
     public ENVManager shopEnv;
     private bool ready = false;
+    public AudioSource audioController { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class FloorManager : MonoBehaviour
     public void BuildFloor()
     {
         currentEnvironment = startingEnvironment;
+        audioController = GetComponent<AudioSource>();
         GameMaster.Entity.BeginGameplay(this);
         SetUpCam();
         numberOfEnvironments = UnityEngine.Random.Range(3, 6);
