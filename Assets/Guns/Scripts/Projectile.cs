@@ -51,6 +51,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        IDamageable damageable = other.GetComponent<IDamageable>();
         if (other.GetComponent<Projectile>()) return;
         if (other.GetComponent<PlayerSword>())
         {
@@ -59,25 +60,25 @@ public class Projectile : MonoBehaviour
         }
         if (other.transform != controllingEntity && !reversed)
         {
-            other.GetComponent<IDamageable>()?.Damage(transform, damage, forces);
+            damageable?.Damage(transform, damage, forces);
             if (impactVfx)
             {
                 Instantiate(impactVfx, transform.position, Quaternion.identity);
             }
             else print("didn't instantiate impact");
                 Destroy(gameObject);
-            if (impactSoundfx)
+            if (damageable != null && impactSoundfx)
             {
-                GameMaster.Entity.audioController.PlayOneShot(impactSoundfx, 0.70f);
+                GameMaster.Entity.audioController.PlayOneShot(impactSoundfx, 0.785f);
             }
         }
         else if (reversed && !other.GetComponent<Player>())
         {
-            other.GetComponent<IDamageable>()?.Damage(transform, damage, forces);
-            if (impactVfx)
+            damageable?.Damage(transform, damage, forces);
+            if (damageable != null && impactVfx)
             {
                 Instantiate(impactVfx, transform.position, Quaternion.identity);
-                GameMaster.Entity.audioController.PlayOneShot(impactSoundfx, 0.70f);
+                GameMaster.Entity.audioController.PlayOneShot(impactSoundfx, 0.785f);
             }
             Destroy(gameObject);
         }

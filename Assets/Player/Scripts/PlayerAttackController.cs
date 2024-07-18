@@ -34,10 +34,7 @@ public class PlayerAttackController : MonoBehaviour
     public void InitializeController(Player _player)
 	{
 		player = _player;
-		currentAmmo = gun.maxAmmo;
-		if (onAmmoChanged != null) onAmmoChanged(currentAmmo);
-        ammoStock = 3;
-		if (onStockChanged != null) onStockChanged(ammoStock);
+		InitializeWeapon();
 		shootPoint = transform.Find("ShootPoint");
         
 		rightWeaponPoint = player.CharacterModel.transform.Find("Rig").Find("Root").Find("Pelvis").Find("Torso").Find("Hand.R").Find("Weapon.R");
@@ -47,6 +44,14 @@ public class PlayerAttackController : MonoBehaviour
         StartCoroutine(TriggerGunStyleChange());
 		SwitchGunObject();
     }
+
+	public void InitializeWeapon()
+	{
+		currentAmmo = gun.maxAmmo;
+		if (onAmmoChanged != null) onAmmoChanged(currentAmmo);
+        ammoStock = 3;
+		if (onStockChanged != null) onStockChanged(ammoStock);
+	}
 
 	private void Update()
 	{
@@ -59,7 +64,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         gun = newWeapon;
 		ammoStock++;
-		onAmmoChanged(ammoStock);
+		onStockChanged(ammoStock);
 		currentAmmo = 0;
 		onAmmoChanged(currentAmmo);
 		SelectGunStyle();

@@ -163,6 +163,7 @@ public class GameMaster : MonoBehaviour
         playerList.ForEach(player =>
         {
             player.Health.InitializeHealth(20);
+            player.AttackController.InitializeWeapon();
             player.StartPlayerGameplay();
         });
         StartGame(twoPlayer);
