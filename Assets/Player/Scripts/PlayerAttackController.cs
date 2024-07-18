@@ -144,6 +144,10 @@ public class PlayerAttackController : MonoBehaviour
 					if(gun.emptyAmmoSoundFx)
 						GameMaster.Entity.audioController.PlayOneShot(gun.emptyAmmoSoundFx);
 				}
+				else
+				{
+					isShooting = false;
+				}
 			}
 		}
 	}

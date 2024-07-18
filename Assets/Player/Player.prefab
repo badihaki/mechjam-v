@@ -1399,6 +1399,7 @@ MonoBehaviour:
   dashForce: 35
   feetFxPoint: {fileID: 0}
   dashVFX: {fileID: 4386165275553091386, guid: 4e7a2f0a9be426846a949272ca734a0a, type: 3}
+  dashSoundFX: {fileID: 8300000, guid: 3fc742ed4238ed2438997c2c290d8261, type: 3}
   <movementEnabled>k__BackingField: 0
 --- !u!114 &4613164862998707594
 MonoBehaviour:

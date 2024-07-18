@@ -19,6 +19,7 @@ public class PlayerLocomotionController : MonoBehaviour
     [SerializeField] private float dashForce = 35.0f;
     [SerializeField] private Transform feetFxPoint;
     [SerializeField] private GameObject dashVFX;
+    [SerializeField] private AudioClip dashSoundFX;
     [field: SerializeField] public bool movementEnabled { get; private set; }
 
     private Camera cam;
@@ -169,6 +170,7 @@ public class PlayerLocomotionController : MonoBehaviour
     private IEnumerator DashBoost()
     {
         // turn off ability to dash, move and shoot while we dashin'
+        GameMaster.Entity.audioController.PlayOneShot(dashSoundFX);
         movementEnabled = false;
         dashTimer += timeToDash;
         player.AttackController.SetCanMelee(false);

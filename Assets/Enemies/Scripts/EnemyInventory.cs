@@ -29,6 +29,7 @@ public class EnemyInventory : MonoBehaviour
             float forceY = UnityEngine.Random.Range(3.0f, 8.0f);
             float forceZ = UnityEngine.Random.Range(-3.0f, 3.0f);
             Vector3 spawnForce = new Vector3(forceX, forceY, forceZ);
+            itemObj.transform.parent = GameMaster.Entity.gameplayManager.currentFloor.currentEnvironment.transform;
             itemObj.GetComponent<Rigidbody>().AddForce(spawnForce, ForceMode.Impulse);
         }
         else

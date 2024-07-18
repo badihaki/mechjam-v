@@ -38,6 +38,7 @@ public class GunPickup : InteractablePickup
 		float forceY = UnityEngine.Random.Range(3.0f, 8.0f);
 		float forceZ = UnityEngine.Random.Range(-3.0f, 3.0f);
 		Vector3 spawnForce = new Vector3(forceX, forceY, forceZ);
+        newPickup.transform.parent = GameMaster.Entity.gameplayManager.currentFloor.currentEnvironment.transform;
         newPickup.physicsController.AddForce(spawnForce, ForceMode.Impulse);
 
         player.AttackController.GetNewGun(gun);
