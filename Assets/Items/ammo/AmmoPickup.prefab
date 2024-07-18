@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1710264302701034872}
   - component: {fileID: 6043874192309343479}
   - component: {fileID: 3194817225418883289}
-  - component: {fileID: 3965667922850118915}
+  - component: {fileID: 6696845340596617856}
   m_Layer: 0
   m_Name: AmmoPickup
   m_TagString: Untagged
@@ -108,7 +108,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3965667922850118915
+--- !u!114 &6696845340596617856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

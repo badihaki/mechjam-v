@@ -22,3 +22,6 @@ MonoBehaviour:
   gunStyle: 1
   rightObj: {fileID: 7320654942715955672, guid: aff1eeff66052ac45a6a02d763f8b677, type: 3}
   leftObj: {fileID: 7320654942715955672, guid: aff1eeff66052ac45a6a02d763f8b677, type: 3}
+  shootFx: {fileID: 0}
+  shootSoundFx: {fileID: 8300000, guid: 7443ca2a47c4ce341b539ce6a69dd5aa, type: 3}
+  emptyAmmoSoundFx: {fileID: 8300000, guid: c2bec830dca7624459b7cdf392c27daf, type: 3}

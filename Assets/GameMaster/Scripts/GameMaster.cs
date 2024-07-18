@@ -104,6 +104,8 @@ public class GameMaster : MonoBehaviour
 
     public void WinGame()
     {
+        Time.timeScale = 0.0f;
+
         canvas.gameObject.SetActive(true);
 		endGameScreen.gameObject.SetActive(true);
 
@@ -116,6 +118,8 @@ public class GameMaster : MonoBehaviour
     }
     public void LoseGame()
     {
+        Time.timeScale = 0.0f;
+
 		canvas.gameObject.SetActive(true);
         endGameScreen.gameObject.SetActive(true);
 		
@@ -139,17 +143,14 @@ public class GameMaster : MonoBehaviour
 #endif
 	}
 
-	// Update is called once per frame
-	void Update()
-    {
-
-    }
-
     public void RestartGame(bool twoPlayer)
     {
+        Time.timeScale = 1.0f;
+
         playerList.ForEach(player =>
         {
             player.Health.InitializeHealth(20);
+            player.StartPlayerGameplay();
         });
         StartGame(twoPlayer);
     }

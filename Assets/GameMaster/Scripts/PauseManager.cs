@@ -35,4 +35,7 @@ public class PauseManager : MonoBehaviour
             player.Activate();
         });
     }
+
+    public void PressRestartBtn() => GameMaster.Entity.RestartGame(GameMaster.Entity.twoPlayerMode);
+    public void PressQuitBtn() => GameMaster.Entity.QuitGame();
 }

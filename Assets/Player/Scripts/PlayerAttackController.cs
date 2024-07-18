@@ -14,6 +14,7 @@ public class PlayerAttackController : MonoBehaviour
 	[SerializeField] private bool playerCanShoot = true;
 	[SerializeField] private WaitForSeconds meleeRechargeTime = new WaitForSeconds(0.85f);
 	[SerializeField] private WaitForSeconds meleeWait = new WaitForSeconds(0.15f);
+	[SerializeField] private AudioClip swordSoundFx;
     [SerializeField] private bool isReloading = false;
 	[SerializeField] private Transform shootPoint;
 	private bool isShooting = false;
@@ -136,7 +137,13 @@ public class PlayerAttackController : MonoBehaviour
 			if (gun && player.Controls.shootInput)
 			{
 				if (currentAmmo > 0 && fireRateTimer <= 0) Shoot();
-				else isShooting = false;
+				else if (currentAmmo <= 0 && fireRateTimer <= 0)
+				{
+					isShooting = false;
+					fireRateTimer += gun.fireRate;
+					if(gun.emptyAmmoSoundFx)
+						GameMaster.Entity.audioController.PlayOneShot(gun.emptyAmmoSoundFx);
+				}
 			}
 		}
 	}
@@ -168,6 +175,7 @@ public class PlayerAttackController : MonoBehaviour
 			{
 				// print("melee-ing");
 				player.AnimationController.SetBool("melee", true);
+				GameMaster.Entity.audioController.PlayOneShot(swordSoundFx);
 				playerCanMeleeAtk = false;
 				player.Controls.UseMelee();
 				StartCoroutine(ResetMelee());

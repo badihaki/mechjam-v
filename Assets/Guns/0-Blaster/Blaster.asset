@@ -24,3 +24,4 @@ MonoBehaviour:
   leftObj: {fileID: 0}
   shootFx: {fileID: 2347933540165725817, guid: 586cd26d4589fb2418d34f7b10eba8a2, type: 3}
   shootSoundFx: {fileID: 8300000, guid: d3cfc96be0a51424ab95fac2614bbda3, type: 3}
+  emptyAmmoSoundFx: {fileID: 8300000, guid: c2bec830dca7624459b7cdf392c27daf, type: 3}

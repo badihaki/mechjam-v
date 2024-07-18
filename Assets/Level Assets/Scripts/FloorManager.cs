@@ -75,17 +75,22 @@ public class FloorManager : MonoBehaviour
             numberOfEnvironments--;
             currentEnvironment.FinishBoard();
         }
+        else
+        {
+            GameMaster.Entity.WinGame();
+        }
     }
 
     public void GoToNextEnvironment()
     {
         GameMaster.Entity.StartLoading();
         
-        int roll = UnityEngine.Random.Range(1, 6);
-        print($"We rolled a {roll}");
+        // int roll = UnityEngine.Random.Range(1, 6);
+        // print($"We rolled a {roll}");
         
-        if (roll <= 4 || isAtShop) StartCoroutine(LoadNextEnv());
-        else StartCoroutine(LoadShopEnv());
+        StartCoroutine(LoadNextEnv());
+        // if (roll <= 4 || isAtShop) StartCoroutine(LoadNextEnv());
+        // else StartCoroutine(LoadShopEnv());
     }
 
     private IEnumerator LoadNextEnv()

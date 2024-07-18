@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickup : ItemPickup
+public class ExtraAmmoPickup : ItemPickup
 {
     private int ammoStockAmt;
     // Start is called before the first frame update

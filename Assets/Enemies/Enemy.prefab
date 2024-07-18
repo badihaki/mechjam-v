@@ -379,6 +379,7 @@ MonoBehaviour:
   <health>k__BackingField: {fileID: 0}
   healthRanges: {x: 3, y: 5}
   <target>k__BackingField: {fileID: 0}
+  <animationController>k__BackingField: {fileID: 0}
   <stateMachine>k__BackingField: {fileID: 0}
 --- !u!54 &8599391827186290192
 Rigidbody:
@@ -513,7 +514,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 3965667922850118915, guid: a2dd175d6be7b1541a69bf95e7ba4be5, type: 3}
+  - {fileID: 6696845340596617856, guid: a2dd175d6be7b1541a69bf95e7ba4be5, type: 3}
+  - {fileID: 6717204959402266002, guid: c30e650ba3d92ea4980b18fd6751f6e4, type: 3}
+  - {fileID: 5725307553405984077, guid: af5df5196228a874fafaff9a82f80f6c, type: 3}
+  - {fileID: 1579260720944405411, guid: f905672f0eb0a31429781c2a44b8e82d, type: 3}
+  - {fileID: 6465701891246774694, guid: 10966a78e35a58549828b8e299dd4b42, type: 3}
 --- !u!1 &5018528469950027301
 GameObject:
   m_ObjectHideFlags: 0

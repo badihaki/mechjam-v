@@ -8,7 +8,6 @@ public class TitleScreenController : MonoBehaviour
 {
     [SerializeField] private Button singleStartBtn;
     [SerializeField] private Button coopStartBtn;
-    [SerializeField] private Button devStartBtn;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +15,6 @@ public class TitleScreenController : MonoBehaviour
         singleStartBtn.gameObject.SetActive(false);
         coopStartBtn = transform.Find("Start P2").GetComponent<Button>();
         coopStartBtn.gameObject.SetActive(false);
-        devStartBtn = transform.Find("Dev").GetComponent<Button>();
-        devStartBtn.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,11 +33,10 @@ public class TitleScreenController : MonoBehaviour
     }
 	public void OnPlayerJoined(PlayerInput playerInput)
 	{
-        print($"count {GameMaster.Entity.playerList.Count}");
+        // print($"count {GameMaster.Entity.playerList.Count}");
         if(GameMaster.Entity.playerList.Count == 0)
         {
             singleStartBtn.gameObject.SetActive(true);
-            devStartBtn.gameObject.SetActive(true);
         }
         else
         {

@@ -1418,6 +1418,7 @@ MonoBehaviour:
   fireRateTimer: 0
   playerCanMeleeAtk: 1
   playerCanShoot: 1
+  swordSoundFx: {fileID: 8300000, guid: 789bcefc09651184d952c5cfb78eb281, type: 3}
   isReloading: 0
   shootPoint: {fileID: 0}
   rightWeaponPoint: {fileID: 0}

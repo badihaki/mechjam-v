@@ -123,7 +123,8 @@ public class Player : MonoBehaviour, IDamageable
     {
         Activate();
         // ui
-		UIController = transform.AddComponent<PlayerUIController>();
+        if(!UIController)
+            UIController = transform.AddComponent<PlayerUIController>();
 		UIController.InitializeController(this);
 
         // change state
@@ -149,6 +150,8 @@ public class Player : MonoBehaviour, IDamageable
 
         // attack
         AttackController.enabled = true;
+
+
     }
 
     public void Deactivate()

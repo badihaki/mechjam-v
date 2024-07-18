@@ -17,4 +17,5 @@ public class GunTemplate : ScriptableObject
 	[Header("effects")]
 	public GameObject shootFx;
 	public AudioClip shootSoundFx;
+	public AudioClip emptyAmmoSoundFx;
 }
