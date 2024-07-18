@@ -82,7 +82,12 @@ public class GameMaster : MonoBehaviour
         playerList.ForEach(player =>
         {
             player.ReturnToGameplayState();
+            if (gameStarted)
+            {
+                player.UIController.InitializeController(player);
+            }
         });
+
     }
 
     private void InitializeGame()
