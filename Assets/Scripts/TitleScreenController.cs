@@ -8,13 +8,16 @@ public class TitleScreenController : MonoBehaviour
 {
     [SerializeField] private Button singleStartBtn;
     [SerializeField] private Button coopStartBtn;
+    [SerializeField] private Button nextBtn;
     // Start is called before the first frame update
     void Start()
     {
-        singleStartBtn = transform.Find("Start P1").GetComponent<Button>();
-        singleStartBtn.gameObject.SetActive(false);
-        coopStartBtn = transform.Find("Start P2").GetComponent<Button>();
-        coopStartBtn.gameObject.SetActive(false);
+        nextBtn = transform.Find("Title").Find("NxtBtn").GetComponent<Button>();
+        nextBtn.gameObject.SetActive(false);
+        // singleStartBtn = transform.Find("Start P1").GetComponent<Button>();
+        // singleStartBtn.gameObject.SetActive(false);
+        // coopStartBtn = transform.Find("Start P2").GetComponent<Button>();
+        // coopStartBtn.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,14 +39,17 @@ public class TitleScreenController : MonoBehaviour
         // print($"count {GameMaster.Entity.playerList.Count}");
         if(GameMaster.Entity.playerList.Count == 0)
         {
-            singleStartBtn.gameObject.SetActive(true);
+            nextBtn.gameObject.SetActive(true);
+            // singleStartBtn.gameObject.SetActive(true);
         }
         else
         {
-            coopStartBtn.gameObject.SetActive(true);
+            // coopStartBtn.gameObject.SetActive(true);
         }
 		Player player = playerInput.GetComponent<Player>();
 		player.PlayerSetup();
         print($"player{player.PlayerID} is ready");
 	}
+
+    public void QuitGame() => GameMaster.Entity.QuitGame();
 }
